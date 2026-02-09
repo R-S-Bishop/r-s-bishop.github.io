@@ -593,12 +593,14 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: nowrap;
 }
 
 .nav-logo {
     width: 40px;
     height: 40px;
     display: block;
+    flex-shrink: 0;
 }
 
 /* Footer Logo */
