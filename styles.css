@@ -546,12 +546,6 @@ a:hover {
         max-width: 300px;
     }
     
-    .nav-links {
-        flex-wrap: wrap;
-        gap: var(--spacing-sm);
-        font-size: 0.9rem;
-    }
-    
     .value-grid,
     .credentials {
         grid-template-columns: 1fr;
@@ -576,11 +570,6 @@ a:hover {
 @media (max-width: 480px) {
     body {
         font-size: 1rem;
-    }
-    
-    .nav-links {
-        gap: var(--spacing-xs);
-        font-size: 0.85rem;
     }
     
     .section {
@@ -646,5 +635,66 @@ a:hover {
 @media (max-width: 480px) {
     .hero-logo {
         max-width: 80px;  /* Increased from 60px */
+    }
+}
+
+/* ===== HAMBURGER MENU ===== */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--teal-primary);
+    font-size: 1.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 0 var(--spacing-md);
+        border-bottom: 2px solid var(--gray-light);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        gap: 0;
+        z-index: 99;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links li {
+        border-bottom: 1px solid var(--gray-light);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: var(--spacing-sm) 0;
+        font-size: 1rem;
+        border-bottom: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--teal-primary);
+        border-bottom: none;
+        padding-left: var(--spacing-xs);
+        transition: padding 0.2s ease;
     }
 }
