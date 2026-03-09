@@ -116,13 +116,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
                 <p class="insight-excerpt">Five verdicts from two days at the World EPA Congress AI &amp; Digital Transformation track — what's actually working, what's failing, and where the implementation gaps are for pharmaceutical organisations deploying AI in HEOR, pricing, and market access contexts.</p>
                 <p><strong>Key findings:</strong></p>
-                <ul class="open-to-list">
-                    <li>Generic AI fails HTA — domain-specific architecture is the answer most organisations haven't built yet</li>
-                    <li>Human-in-the-loop is non-negotiable, but compliance HITL vs expert HITL produce very different outcomes</li>
-                    <li>The tools aren't the barrier — the thinking is</li>
-                    <li>The regulatory layer for AI-generated evidence is in active formation</li>
-                    <li>Data quality is the unglamorous foundation that determines who wins</li>
-                </ul>
+                <ol style="padding-left: 1.5rem; color: var(--gray-dark);" class="findings-list">
+                    <li style="margin-bottom: 0.5rem;">Generic AI fails HTA — domain-specific architecture is the answer most organisations haven't built yet</li>
+                    <li style="margin-bottom: 0.5rem;">Human-in-the-loop is non-negotiable, but compliance HITL vs expert HITL produce very different outcomes</li>
+                    <li style="margin-bottom: 0.5rem;">The tools aren't the barrier — the thinking is</li>
+                    <li style="margin-bottom: 0.5rem;">The regulatory layer for AI-generated evidence is in active formation</li>
+                    <li style="margin-bottom: 0.5rem;">Data quality is the unglamorous foundation that determines who wins</li>
+                </ol>
+                <style>
+                    .findings-list { counter-reset: findings; list-style: none; padding-left: 0; }
+                    .findings-list li { counter-increment: findings; display: flex; align-items: baseline; gap: 0.75rem; }
+                    .findings-list li::before { content: counter(findings); color: #0d9488; font-weight: 700; font-size: 1.1rem; min-width: 1.5rem; }
+                </style>
                 <p style="font-style: italic; color: #6b7280; margin-top: 1rem;">Video synthesis by NotebookLM from written analysis.</p>
                 <a href="RB_WEPA_Congress_Analysis_2026.pdf" download class="btn btn-secondary" style="margin-top: 1rem;">Download Full Written Analysis (PDF) &darr;</a>
             </div>
