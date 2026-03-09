@@ -72,6 +72,28 @@
 
 ---
 
+## Session: 9 March 2026
+
+### Context
+- Post-EPA Congress — adding analysis content to the Insights page
+- Working directly on `main` branch
+
+### Completed Tasks
+
+#### 1. Featured Analysis Section — Insights Page
+- Added "Featured Analysis" `<h2>` section above "Recent Posts" in `insights.html`
+- **Content:** World EPA Congress 2026: AI & Digital Transformation Track (March 2026)
+- **Includes:**
+  - Responsive 16:9 YouTube embed (`https://www.youtube.com/embed/feNwZJwVJV4`)
+  - Description paragraph
+  - 5 key findings as a teal-numbered list (CSS counter, `#0d9488`)
+  - NotebookLM attribution note (italic grey)
+  - PDF download button linking to `RB_WEPA_Congress_Analysis_2026.pdf`
+- **Files changed:** `insights.html`
+- **Files added:** `RB_WEPA_Congress_Analysis_2026.pdf` (repo root, sourced from `/Users/ryan/Desktop/EPA/`)
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
