@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://ryanbishop.co.uk/</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -33,6 +33,13 @@
     <loc>https://ryanbishop.co.uk/insights.html</loc>
     <lastmod>2026-02-26</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ryanbishop.co.uk/ai-literacy.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
