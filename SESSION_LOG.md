@@ -94,6 +94,54 @@
 
 ---
 
+## Session: 25 March 2026
+
+### Context
+- AI Literacy Series launch — three episodes produced via NotebookLM
+- New dedicated AI Literacy tab added to site
+- EU AI Act analysis pipeline completed (cheat sheet + four-lens analysis)
+- Working directly on `main` branch
+
+### Completed Tasks
+
+#### 1. New Page — AI Literacy Series (`ai-literacy.html`)
+- Created standalone AI Literacy Series page as a new nav tab
+- **Positioning:** Plain-English explainers on AI topics that matter in practice
+- **Structure:** Three episode cards, each with responsive YouTube embed, excerpt, "In this episode" bullet list, NotebookLM attribution, and PDF download CTA(s)
+- **Episode 1 — The EU AI Act: What It Actually Means**
+  - YouTube: `https://www.youtube.com/embed/6jdQTXq6U2U`
+  - Two download buttons: Cheat Sheet first, Four-Lens Analysis second
+  - PDFs: `RB_EU_AI_Act_Cheat_Sheet_2026.pdf`, `RB_EU_AI_Act_Four_Lens_Analysis_2026.pdf`
+- **Episode 2 — What Happens to Your Data When You Use an LLM?**
+  - YouTube: `https://www.youtube.com/embed/77JNO-1Nuzc`
+  - PDF: `RB_LLM_Data_Explainer_2026.pdf`
+- **Episode 3 — Cookie Policies: What You're Actually Agreeing To**
+  - YouTube: `https://www.youtube.com/embed/MTFJz-2uvVQ`
+  - No PDF download (episode uses ryanbishop.co.uk cookie policy as live worked example)
+- **Files added:** `ai-literacy.html`
+- **Files added (PDFs):** `RB_EU_AI_Act_Cheat_Sheet_2026.pdf`, `RB_EU_AI_Act_Four_Lens_Analysis_2026.pdf`, `RB_LLM_Data_Explainer_2026.pdf`
+
+#### 2. Nav Update — All Pages
+- Added `AI Literacy` nav link between `Insights` and `Contact` on all 9 pages (including new `ai-literacy.html`)
+- **Files changed:** `index.html`, `about.html`, `expertise.html`, `portfolio.html`, `insights.html`, `contact.html`, `privacy.html`, `terms.html`, `ai-literacy.html`
+
+#### 3. Sitemap Update
+- Added `ai-literacy.html` to `sitemap.xml` with `lastmod 2026-03-25`, `changefreq monthly`, `priority 0.8`
+- Updated `index.html` lastmod to `2026-03-25`
+- **Files changed:** `sitemap.xml`
+
+### Post-Deploy Actions Required
+- Submit updated sitemap in Google Search Console
+- Use URL Inspection tool to request indexing of `ai-literacy.html`
+- Publish LinkedIn post (Series launch — EU AI Act as CTA, ryanbishop.co.uk as destination)
+- Episode 3 LinkedIn post (cookies) to follow approximately 2 weeks after Series launch post
+
+### Known / Outstanding
+- Episode 3 has no PDF download — intentional; the episode uses the live site cookie policy as its worked example
+- LinkedIn post drafted and approved — held pending deploy
+
+---
+
 ## Session: 14 April 2026
 
 ### Context
