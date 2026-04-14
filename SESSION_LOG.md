@@ -177,8 +177,13 @@
 - EmailOctopus form fields accept input ✅
 - GA `brief_download` event wired on both download buttons ✅
 
-### Known / Outstanding
-- EmailOctopus Subscribe button not live-tested (would create a real list entry); manual test recommended post-deploy
+#### 6. Post-Deploy Fix — `ai-literacy.html` Nav
+- After push, GitHub Pages showed an issue caused by `ai-literacy.html` (brought in via merge from the 25 March branch) still having the old nav (`AI Literacy` → `ai-literacy.html`)
+- Fixed: nav updated to match all other pages (`AI Brief` → `brief.html`), committed and pushed
+
+### Post-Deploy Confirmed ✅
+- GitHub Pages live and correct
+- EmailOctopus subscribe workflow set up and tested ✅
 
 ---
 

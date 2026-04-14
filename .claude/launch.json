@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Castleton Dental (static)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3001", "--directory", "/Users/ryan/Documents/GitHub/Castleton"],
+      "port": 3001
+    },
+    {
+      "name": "Ryan Bishop site (static)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3002", "--directory", "/Users/ryan/Documents/GitHub/ryanbishop.github.io"],
+      "port": 3002
+    }
+  ]
+}
