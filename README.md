@@ -437,6 +437,6 @@ Total size: ~130 KB
 
 ---
 
-**Questions?** Review this README or reach out to discuss specific implementation questions.
+**Questions?** Review this README or reach out to discuss specific implementation questions. 
 
 **Good luck with the launch!** This is a professional, complete website ready for immediate deployment.
