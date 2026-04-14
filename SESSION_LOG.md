@@ -94,6 +94,46 @@
 
 ---
 
+## Session: 14 April 2026
+
+### Context
+- Adding `brief.html` (Weekly AI Intelligence Brief) — replaces `ai-literacy.html` in nav across all pages
+- Issue 2 of the brief published today (14 Apr 2026)
+
+### Completed Tasks
+
+#### 1. New Page — `brief.html`
+- Created Weekly AI Intelligence Brief archive page
+- **Features:** intro copy, meta row (format/frequency/audience), issue archive table, EmailOctopus sign-up widget, AI-generation disclaimer
+- **Issue archive:** Issue 2 (14 Apr 2026) shown first (most-recent-first order), Issue 1 / Pilot (31 Mar 2026) second
+- **Fixes applied during preview:** truncated file bug (missing `</script></body></html>`), "five" → "four" themed sections, italic tagline centred, EmailOctopus widget centred in green box, Issue 1 labelled "(Pilot)"
+- **Files added:** `brief.html`
+
+#### 2. New Directory — `briefs/`
+- Added PDF download directory to repo root
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 1 - 31.03.2026.pdf`, `briefs/RB Weekly AI Brief - Issue 2 - 14.04.2026.pdf`
+
+#### 3. Nav Update — All Pages
+- Replaced `<a href="ai-literacy.html">AI Literacy</a>` with `<a href="brief.html">AI Brief</a>` across all 9 HTML pages
+- **Files changed:** `index.html`, `about.html`, `expertise.html`, `portfolio.html`, `insights.html`, `contact.html`, `privacy.html`, `terms.html`, `brief.html`
+
+#### 4. Sitemap Update — `sitemap.xml`
+- Replaced `ai-literacy.html` entry with `brief.html`
+- Updated `lastmod` for index and brief to `2026-04-14`
+- Set `changefreq: weekly`, `priority: 0.9` for brief
+
+#### 5. QC — Preview & Interactive Testing
+- Previewed all pages via local Ruby/WEBrick server (`/tmp/rb-preview`)
+- Hamburger nav tested on mobile (375px) — all 7 links present, open/close working ✅
+- Both PDF download links confirmed 200 OK ✅
+- EmailOctopus form fields accept input ✅
+- GA `brief_download` event wired on both download buttons ✅
+
+### Known / Outstanding
+- EmailOctopus Subscribe button not live-tested (would create a real list entry); manual test recommended post-deploy
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
