@@ -9,9 +9,10 @@
     },
     {
       "name": "Ryan Bishop site (static)",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-l", "${PORT}", "/Users/ryan/Documents/GitHub/ryanbishop.github.io"],
-      "autoPort": true
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["/tmp/rb_proxy.py"],
+      "port": 3006,
+      "autoPort": false
     }
   ]
 }

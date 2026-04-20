@@ -187,6 +187,55 @@
 
 ---
 
+## Session: 16 April 2026
+
+### Context
+- Bug fix: AI Brief and AI Literacy nav tabs were competing — only one appeared depending on which page you were on
+- Root cause: when `brief.html` was added in the previous session, the nav on each page replaced `AI Literacy` with `AI Brief` rather than adding it alongside; `ai-literacy.html` was then fixed in isolation, leaving the two pages with mutually exclusive navs
+
+### Completed Tasks
+
+#### 1. Nav Fix — Both Tabs Present on All Pages
+- **Issue:** Every page showed either `AI Brief` OR `AI Literacy` in the nav, never both
+  - `brief.html` had `AI Brief` (active) but no `AI Literacy` link
+  - `ai-literacy.html` had `AI Literacy` (active) but no `AI Brief` link
+  - All other 8 pages had `AI Brief` only — no `AI Literacy`
+- **Fix:** Added the missing link to each page so the full nav order is: Home → About → Expertise → Portfolio → Insights → AI Brief → AI Literacy → Contact
+- **Files changed:** `index.html`, `about.html`, `expertise.html`, `portfolio.html`, `insights.html`, `contact.html`, `privacy.html`, `terms.html`, `brief.html`, `ai-literacy.html`
+- **Verified live:** Site confirmed rendering and responding correctly in the real world ✅
+
+---
+
+## Session: 19 April 2026
+
+### Context
+- Adding Episode 4 to the AI Literacy Series
+- New episode: *What is an AI model, really?* — covers LLM fundamentals via a recipe analogy, with dual audience framing (families and organisations)
+
+### Completed Tasks
+
+#### 1. New Episode — AI Literacy Series Episode 4
+- **Title:** What is an AI model, really?
+- **YouTube:** `https://www.youtube.com/embed/eu7xhZq05q4`
+- **PDF:** `RB_AI_Model_Explainer_2026.pdf` (sourced from `/Users/ryan/Desktop/Ryan Bishop/AI Literacy/What is an AI model?/`)
+- **Card content:** Dual-audience excerpt (families + organisations), four bullets covering: AI taxonomy, recipe analogy, pattern matching, model vs product distinction
+- **Files changed:** `ai-literacy.html`
+- **Files added:** `RB_AI_Model_Explainer_2026.pdf`
+
+#### 2. Keywords Meta — `ai-literacy.html`
+- Added: `what is an AI model`, `large language model explained`
+
+#### 3. Sitemap — `sitemap.xml`
+- Re-added `ai-literacy.html` (had been dropped in the 14 Apr session when `brief.html` replaced it)
+- Updated `index.html` lastmod to `2026-04-19`
+- Set `ai-literacy.html` lastmod to `2026-04-19`, `changefreq monthly`, `priority 0.8`
+
+### Post-Deploy Actions Required
+- Use URL Inspection in Google Search Console to request re-indexing of `ai-literacy.html` (sitemap was out of date)
+- Consider a LinkedIn post for Episode 4 launch
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
