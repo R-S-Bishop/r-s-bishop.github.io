@@ -236,6 +236,42 @@
 
 ---
 
+## Session: 21 April 2026
+
+### Context
+- Issue 3 of the RB Weekly AI Brief published today
+- Rename: "Weekly AI Intelligence Brief" → "Weekly AI Brief" throughout `brief.html`
+
+### Completed Tasks
+
+#### 1. Brief Rename — `brief.html` (Ryan Bishop, committed separately)
+- Removed "Intelligence" from all instances of the brief title across `brief.html`
+- Now reads "RB Weekly AI Brief" / "Weekly AI Brief" consistently throughout the page
+- **Commit:** `b5b8ff8` — "Update title and references from 'Intelligence Brief' to 'Brief'"
+
+#### 2. Issue 3 — Archive Table
+- Added Issue 3 row at the top of the archive table (most-recent-first order)
+- **Date:** 21 Apr 2026
+- **Standout story:** Novo Nordisk partners with OpenAI to accelerate drug discovery — using AI to analyse complex datasets and identify promising new compounds. As drugmakers increasingly turn to AI partnerships at scale, the implications for evidence generation and HTA submissions are growing harder to ignore.
+- GA download event wired: `brief_download`, issue 3, date 21.04.2026
+- **Files changed:** `brief.html`
+
+#### 3. Issue 3 PDF — `briefs/`
+- Copied `RB Weekly AI Brief - Issue 3 - 21.04.2026.pdf` into `briefs/` directory
+- Download link confirmed 200 OK
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 3 - 21.04.2026.pdf`
+
+#### 4. "Coming Soon" Line
+- Updated from "Issue 3 publishes week of 21 April 2026" → "Issue 4 publishes week of 28 April 2026"
+
+#### 5. Episode 2 PDF Fix — `ai-literacy.html`
+- `RB_LLM_Data_Explainer_2026.pdf` was missing from the repo entirely (returning 404)
+- Sourced from Desktop and copied into repo root
+- Download CTA label standardised: "Download Full Written Analysis" → "Download Written Analysis (PDF) ↓" (matching Episodes 3 & 4)
+- All five AI Literacy PDFs confirmed 200 OK
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
