@@ -272,6 +272,29 @@
 
 ---
 
+## Session: 28 April 2026
+
+### Context
+- Issue 4 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 4 — Archive Table
+- Added Issue 4 row at the top of the archive table (most-recent-first order)
+- **Date:** 28 Apr 2026
+- **Standout story:** New UK clinical trial regulations came into force today — designed to give patients faster access to new treatments while maintaining safety standards. Post-Brexit regulatory divergence from EU frameworks is now a live consideration for AI-enabled diagnostics and digital therapeutics seeking UK market entry.
+- GA download event wired: `brief_download`, issue 4, date 28.04.2026
+- **Files changed:** `brief.html`
+
+#### 2. Issue 4 PDF — `briefs/`
+- Copied `RB Weekly AI Brief - Issue 4 - 28.04.2026.pdf` into `briefs/` directory
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 4 - 28.04.2026.pdf`
+
+#### 3. "Coming Soon" Line Removed
+- Removed "Issue 4 publishes week of 28 April 2026" — Issue 4 is now live
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
