@@ -295,6 +295,32 @@
 
 ---
 
+## Session: 6 May 2026
+
+### Context
+- Issue 5 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 5 — Archive Table
+- Added Issue 5 row at the top of the archive table (most-recent-first order)
+- **Date:** 6 May 2026
+- **Standout story:** The EU AI Act's high-risk obligations are currently scheduled to take effect August 2, 2026 — 13 weeks away. A Digital Omnibus proposal is expected to push this to December 2027, but it hasn't been formally adopted. August 2 remains the current legal obligation.
+- GA download event wired: `brief_download`, issue 5, date 06.05.2026
+- **Files changed:** `brief.html`
+
+#### 2. Issue 5 PDF — `briefs/`
+- Copied `RB Weekly AI Brief - Issue 5 - 06.05.2026.pdf` into `briefs/` directory
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 5 - 06.05.2026.pdf`
+
+#### 3. Preview Server Fix — `.claude/launch.json`
+- Fixed persistent `PermissionError: os.getcwd()` on preview server startup
+- **Root cause:** sandboxed preview process couldn't access its working directory when launching `/usr/bin/python3` directly
+- **Fix:** Changed `runtimeExecutable` to `/bin/bash` with `runtimeArgs: ["-c", "cd /tmp && /usr/bin/python3 /tmp/rb_proxy.py"]`
+- **Files changed:** `.claude/launch.json`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
