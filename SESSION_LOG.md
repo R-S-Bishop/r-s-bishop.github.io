@@ -321,6 +321,31 @@
 
 ---
 
+## Session: 12 May 2026
+
+### Context
+- Issue 6 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 6 — Archive Table
+- Added Issue 6 row at the top of the archive table (most-recent-first order)
+- **Date:** 12 May 2026
+- **Standout story:** The EU AI Act high-risk deadline is now confirmed — December 2, 2027 for standalone systems, August 2, 2028 for medical devices. After months of uncertainty, pharmaceutical and healthcare AI companies finally have a definitive planning horizon. The compliance architecture is unchanged. The clock is running. Also in Issue 6: why Anthropic decided its latest model was too dangerous to release.
+- GA download event wired: `brief_download`, issue 6, date 12.05.2026
+- **Files changed:** `brief.html`
+
+#### 2. Issue 6 PDF — `briefs/`
+- Copied `RB Weekly AI Brief - Issue 6 - 12.05.2026.pdf` into `briefs/` directory
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 6 - 12.05.2026.pdf`
+
+#### 3. Preview Server Fix — `nohup` for file server
+- Background Bash tasks (`run_in_background: true`) were being killed between tool calls, repeatedly crashing the file server on port 3004
+- **Fix:** Use `nohup python3 -m http.server ... > /tmp/rb_fileserver.log 2>&1 &` so the file server persists independently of the task manager
+- Memory file updated with `nohup` instructions and scroll-blanking workaround (use `preview_resize` to 1280×1800 instead of `scrollIntoView`/`window.scrollTo`)
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
