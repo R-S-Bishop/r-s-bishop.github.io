@@ -346,6 +346,26 @@
 
 ---
 
+## Session: 20 May 2026
+
+### Context
+- Issue 7 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 7 — Archive Table
+- Added Issue 7 row at the top of the archive table (most-recent-first order)
+- **Date:** 20 May 2026
+- **Standout story:** The European Commission's stakeholder consultation on AI transparency obligations closes 3 June 2026 — two weeks away. The draft guidelines clarify disclosure requirements for interactive AI systems, deepfake labelling, and biometric categorisation under Article 50 of the EU AI Act, all applying from August 2026.
+- GA download event wired: `brief_download`, issue 7, date 20.05.2026
+- **Files changed:** `brief.html`
+
+#### 2. Issue 7 PDF — `briefs/`
+- Copied `RB Weekly AI Brief - Issue 7 - 20.05.2026.pdf` into `briefs/` directory
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 7 - 20.05.2026.pdf`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
