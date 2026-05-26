@@ -366,6 +366,26 @@
 
 ---
 
+## Session: 26 May 2026
+
+### Context
+- Issue 8 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 8 — Archive Table
+- Added Issue 8 row at the top of the archive table (most-recent-first order)
+- **Date:** 26 May 2026
+- **Standout story:** The NIHR i4i £10m funding call closes tomorrow — 27 May 2026. It is the direct funded mechanism for companies with AI-enabled diagnostics or digital health tools holding a NICE Early Value Assessment recommendation to generate the real-world evidence required for full NICE guidance and NHS-wide reimbursement.
+- GA download event wired: `brief_download`, issue 8, date 26.05.2026
+- **Files changed:** `brief.html`
+
+#### 2. Issue 8 PDF — `briefs/`
+- Copied `RB Weekly AI Brief - Issue 8 - 26.05.2026.pdf` into `briefs/` directory
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 8 - 26.05.2026.pdf`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
