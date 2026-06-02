@@ -7,13 +7,22 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0JWHPFXC8B"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0JWHPFXC8B');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Ryan Bishop Consulting Ltd</title>
-  <meta name="description" content="Start a conversation. I read everything.">
-  <link rel="canonical" href="https://ryanbishop.co.uk/contact.html">
+  <title>AI &amp; ML Reference Guide — Ryan Bishop Consulting Ltd</title>
+  <meta name="description" content="A public, interactive reference guide — from classical ML through foundation models and agentic AI. Free.">
+  <link rel="canonical" href="https://ryanbishop.co.uk/reference-guide.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Override iframe sizing for the embed layout */
+    .ref-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    .ref-caption-row { display: flex; justify-content: flex-start; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 16px; }
+    .ref-caption-mono { font-family: var(--font-mono); font-size: 12px; color: var(--rb-mute); }
+    .ref-open-link { font-size: 14.5px; font-weight: 700; color: var(--rb-teal-primary); text-decoration: none; border-bottom: 2px solid var(--rb-teal-primary); padding-bottom: 2px; }
+    .ref-open-link:hover { color: var(--rb-teal-dark); border-bottom-color: var(--rb-teal-dark); }
+    @media (max-width: 900px) { .ref-pair { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQFB42D4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -28,7 +37,7 @@
       <a href="index.html" class="site-nav__link">Home</a>
       <a href="about.html" class="site-nav__link">About</a>
       <div class="site-nav__dropdown-wrap">
-        <a href="resources.html" class="site-nav__link">Resources</a>
+        <a href="resources.html" class="site-nav__link active">Resources</a>
         <button class="site-nav__caret-btn" aria-expanded="false" aria-label="Open Resources menu" aria-haspopup="true"><span class="site-nav__caret">▾</span></button>
         <div class="site-nav__dropdown" role="menu">
           <a href="brief.html" class="site-nav__dropdown-item"><div class="site-nav__dropdown-item-title gold">AI Brief</div><div class="site-nav__dropdown-item-desc">Weekly healthcare-AI digest</div></a>
@@ -37,7 +46,7 @@
           <a href="insights.html" class="site-nav__dropdown-item"><div class="site-nav__dropdown-item-title gold">Insights</div><div class="site-nav__dropdown-item-desc">Long-form analysis</div></a>
         </div>
       </div>
-      <a href="contact.html" class="site-nav__link active">Contact</a>
+      <a href="contact.html" class="site-nav__link">Contact</a>
     </nav>
     <div class="site-nav__cta"><a href="contact.html" class="btn btn-primary">Get in touch</a></div>
     <button class="site-nav__toggle" aria-label="Toggle navigation">&#9776;</button>
@@ -45,55 +54,45 @@
 </header>
 
 <div class="page-header">
-  <div class="page-header__kicker">Contact</div>
-  <h1 class="page-header__title">Start a conversation. I read everything.</h1>
-  <p class="page-header__sub">Most valuable conversations are with pharmaceutical and healthcare organisations navigating AI adoption, consulting firms working on healthcare-AI strategy, and anyone working where domain expertise and AI capability genuinely meet.</p>
+  <div class="page-header__kicker">Resources · AI &amp; ML Reference Guide</div>
+  <h1 class="page-header__title">From classical ML through foundation models and agentic AI.</h1>
+  <p class="page-header__sub">A public, interactive reference guide — built in the open to consolidate my own learning in AI &amp; Digital Transformation, with a search function for quick lookup. Free, and the canonical map I point people to.</p>
 </div>
 
-<div class="contact-cards">
-  <a href="mailto:ryan@ryanbishop.co.uk" class="contact-card">
-    <div class="contact-card__kicker">Best for detailed enquiries</div>
-    <div class="contact-card__title">Email</div>
-    <div class="contact-card__handle">ryan@ryanbishop.co.uk</div>
-    <span class="contact-card__cta">Compose email →</span>
-  </a>
-  <a href="https://www.linkedin.com/in/ryan-bishop-66248164/" target="_blank" rel="noopener" class="contact-card contact-card--gold">
-    <div class="contact-card__kicker">Best for quick questions &amp; networking</div>
-    <div class="contact-card__title">LinkedIn</div>
-    <div class="contact-card__handle">/in/ryan-bishop-66248164</div>
-    <span class="contact-card__cta">Connect on LinkedIn →</span>
-  </a>
-</div>
-
-<div class="contact-two-col">
-  <div>
-    <h2 style="font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:-0.015em;margin-bottom:14px;">What I'm open to</h2>
-    <ul style="list-style:disc;padding-left:18px;font-size:15px;color:var(--rb-ink);line-height:1.8;">
-      <li><strong>Strategic conversations</strong> about AI in pharma and healthcare</li>
-      <li><strong>Advisory</strong> — project-based or ongoing, responsible implementation</li>
-      <li><strong>Speaking &amp; workshops</strong> — governance, healthcare AI, literacy</li>
-      <li><strong>Collaboration</strong> on initiatives needing both domain and AI capability</li>
-    </ul>
+<!-- Embed pair -->
+<section class="section-wrap" style="padding-bottom:40px;">
+  <div class="ref-pair">
+    <!-- Live embed — teal-framed, no exposed URL, scrolling disabled -->
+    <div class="ref-embed-wrap">
+      <iframe
+        src="https://ryanbishop.co.uk/ai-portfolio/AI_ML_Reference_Guide.html"
+        title="AI &amp; ML Reference Guide"
+        loading="lazy"
+        scrolling="no"
+        style="border:none;width:182%;height:182%;transform:scale(0.55);transform-origin:top left;display:block;"
+      ></iframe>
+    </div>
+    <!-- HEOR bespoke edition teaser -->
+    <div class="heor-teaser">
+      <div class="heor-teaser__kicker">For teams</div>
+      <h3 class="heor-teaser__title">A bespoke edition for your domain.</h3>
+      <p class="heor-teaser__body">The public guide covers AI &amp; ML in general. For pharma and market-access teams, I build private, <strong style="color:#fff;">HEOR-specific reference editions</strong> — mapped to your methods, your evidence standards, and your governance, so your people share one accurate vocabulary.</p>
+      <div class="heor-teaser__bullets">
+        <div class="heor-teaser__bullet">Tailored to HEOR, pricing &amp; market-access workflows</div>
+        <div class="heor-teaser__bullet">Worked examples in your therapeutic areas</div>
+        <div class="heor-teaser__bullet">Hosted privately for your team — kept current</div>
+      </div>
+      <div>
+        <a href="contact.html" class="btn btn-gold">Enquire about a bespoke edition →</a>
+        <div class="heor-teaser__cta-note">Commissioned engagement · scoped to your team</div>
+      </div>
+    </div>
   </div>
-  <div>
-    <h2 style="font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:-0.015em;margin-bottom:14px;">Current status</h2>
-    <p style="font-size:15px;color:var(--rb-ink);line-height:1.7;margin-bottom:12px;">Completing an MA in AI &amp; Digital Transformation at Southampton (Sept 2026), building the advisory practice, and primary caregiver for three young children.</p>
-    <p style="font-size:15px;color:var(--rb-mute);line-height:1.7;">Availability is flexible but structured around family commitments. Project-based and advisory relationships welcome.</p>
+  <div class="ref-caption-row">
+    <span class="ref-caption-mono">Live · interactive · always free</span>
+    <a href="https://ryanbishop.co.uk/ai-portfolio/AI_ML_Reference_Guide.html" target="_blank" rel="noopener" class="ref-open-link">Open in a full window →</a>
   </div>
-</div>
-
-<div class="contact-mist">
-  <div class="contact-mist__inner">
-    <div class="contact-mist__kicker">What makes conversations valuable</div>
-    <ul class="contact-mist__list">
-      <li>Organisations genuinely grappling with implementation (not exploring hype)</li>
-      <li>Specific regulated contexts where domain expertise matters</li>
-      <li>Governance and regulatory compliance questions</li>
-      <li>Practical implementation vs. theoretical possibilities</li>
-      <li>Strategic thinking about where AI adds genuine value</li>
-    </ul>
-  </div>
-</div>
+</section>
 
 <footer class="site-footer">
   <div class="site-footer__inner">

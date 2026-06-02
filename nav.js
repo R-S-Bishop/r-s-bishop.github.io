@@ -1,19 +1,32 @@
-// ===== HAMBURGER NAVIGATION =====
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
+// Nav: Resources dropdown — caret-only toggle, word links to hub; mobile toggle
+(function () {
+  var caret = document.querySelector('.site-nav__caret-btn');
+  var dropdown = document.querySelector('.site-nav__dropdown');
 
-// Toggle menu open/closed
-navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.textContent = isOpen ? '✕' : '☰';
-    navToggle.setAttribute('aria-expanded', isOpen);
-});
-
-// Close menu when any link is tapped
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.textContent = '☰';
-        navToggle.setAttribute('aria-expanded', 'false');
+  if (caret && dropdown) {
+    caret.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dropdown.classList.contains('open');
+      dropdown.classList.toggle('open', !isOpen);
+      caret.setAttribute('aria-expanded', String(!isOpen));
     });
-});
+
+    document.addEventListener('click', function () {
+      dropdown.classList.remove('open');
+      if (caret) caret.setAttribute('aria-expanded', 'false');
+    });
+
+    dropdown.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  }
+
+  // Mobile nav toggle
+  var mobileToggle = document.querySelector('.site-nav__toggle');
+  var navLinks = document.querySelector('.site-nav__links');
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', function () {
+      navLinks.classList.toggle('open');
+    });
+  }
+})();

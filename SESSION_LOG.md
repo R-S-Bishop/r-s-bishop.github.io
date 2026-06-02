@@ -386,6 +386,163 @@
 
 ---
 
+## Session: 31 May 2026
+
+### Context
+- Adding Episode 5 to the AI Literacy Series
+- New episode: *AI Hallucinations: Why They Happen and Why They Matter*
+- Accompanies Episode 4 (What is an AI model, really?) — builds directly on LLM fundamentals to explain what goes wrong structurally
+
+### Completed Tasks
+
+#### 1. New Episode — AI Literacy Series Episode 5
+- **Title:** AI Hallucinations: Why They Happen and Why They Matter
+- **YouTube:** `https://www.youtube.com/embed/Ry-Jg1eEzGI`
+- **PDF:** `RB_AI_Hallucinations_Explainer_2026.pdf` (sourced from `/Users/ryan/Desktop/Ryan Bishop/AI Literacy/Hallucinations/`)
+- **Card content:** Intro paragraph establishing hallucination as structural (not a glitch), second paragraph on implications, seven bullets covering: definition, intrinsic vs extrinsic, three structural causes, unfixability, detection difficulty, families use case, organisations use case
+- **Files changed:** `ai-literacy.html`
+- **Files added:** `RB_AI_Hallucinations_Explainer_2026.pdf`
+
+### Post-Deploy Actions Required
+- Push commit `64513b9` manually from Terminal (`git push origin main`) — GitHub authentication not accessible from Claude Code sandbox
+- Consider a LinkedIn post for Episode 5 launch
+
+---
+
+## Session: 1 June 2026
+
+### Context
+- Full site redesign: portfolio site → business site for **Ryan Bishop Consulting Ltd**
+- Source: Claude Design handoff from `/Users/ryan/Desktop/design_handoff_business_site/`
+- Design brief: Re-frames site commercially as an independent AI-strategy advisory practice serving pharma & healthcare; keeps existing brand (teal/gold/ink, Merriweather + Inter + JetBrains Mono, RB monogram)
+- All existing integrations (GTM, Cookiebot, GA, EmailOctopus) preserved and carried through
+
+### Completed Tasks
+
+#### 1. Design System — `styles.css`
+- Full replacement with new design system (`colors_and_type.css` from handoff) plus all component styles
+- Design tokens: `--rb-teal-*`, `--rb-gold-*`, `--rb-ink`, `--rb-mute`, `--rb-paper`, `--rb-paper-web`
+- Type: Merriweather 900/700 (display/headings), Inter (body/UI), JetBrains Mono (kickers/meta)
+- All component classes added: nav, hero, how-I-help, audiences, brief-band, proof-strip, footer, literacy grid, modal, archive table, featured-issue, insights, about, contact, reference embed, HEOR teaser
+
+#### 2. New Asset — `logo-white.png`
+- Copied white-on-transparent RB monogram from handoff assets into repo root for use on dark backgrounds (footers, dark bands)
+
+#### 3. Nav — `nav.js`
+- Replaced hamburger-only nav script with new: Resources dropdown (click-to-open, click-outside-to-close, caret flips), mobile toggle for full link list
+
+#### 4. Home Page — `index.html`
+- Full redesign: sticky blurred nav → hero (2-col, 58px Merriweather, teal `evidence bar` emphasis, photo 4/5 aspect, Surrey/BCS caption chip) → How I can help (3 cards, teal/ink/gold top borders) → Two-audience split (pharma card + teal-mist families card) → AI Brief dark band with EmailOctopus form + issue preview card → Credibility strip (4-cell bordered row) → Closing blockquote → rich dark footer (4-col, white logo)
+- **EmailOctopus:** form ID `40515d04-30ee-11f1-865c-639eca6614fa` embedded via `eomail5.com` script
+
+#### 5. About Page — `about.html`
+- Full redesign: page header → 2-col (photo + at-a-glance card / narrative prose) → Career timeline (2008–2011 ICR → 2011–2013 MSc → 2013–2025 pharma → 2025– advisory) → Why responsible AI section → credibility strip → footer
+
+#### 6. Resources Hub — `resources.html` (new page)
+- Featured AI Brief dark card (left: headline + EmailOctopus form, right: 3 recent issues with PDF links + full archive link) → 3 stream cards (AI Literacy teal / AI & ML Reference ink / Insights gold) → closing quote → footer
+
+#### 7. AI Brief — `brief.html`
+- Full redesign: page header → 3 meta cards → featured №8 card (1.5/1 split: left = standout + 4 themes, right = dark sidebar + gold PDF download) → Earlier issues archive table (rows №7→№1, alternating paper/white) → subscribe band with EmailOctopus form → footer
+- **PDF links:** all 8 issues linked to real `briefs/` directory paths
+- **EmailOctopus:** same form ID embedded in signup band
+
+#### 8. AI Literacy — `ai-literacy.html`
+- Full redesign: page header → 3-column episode grid (5 cards, YouTube thumbnails, Ep N badges, play overlay) → modals (per episode: embedded YouTube iframe, blurb, bullet list, PDF download buttons, NotebookLM credit, × close + scrim-click + Escape to close)
+- **Episode PDF paths:** Ep1 analysis → `RB_EU_AI_Act_Four_Lens_Analysis_2026.pdf`; Ep1 cheat sheet → `RB_EU_AI_Act_Cheat_Sheet_2026.pdf`; Ep2 → `RB_LLM_Data_Explainer_2026.pdf`; Ep3 → no PDF (intentional); Ep4 → `RB_AI_Model_Explainer_2026.pdf`; Ep5 → `RB_AI_Hallucinations_Explainer_2026.pdf`
+
+#### 9. AI & ML Reference Guide — `reference-guide.html` (new page)
+- Page header → symmetric pair: left = teal-framed live iframe embed (`ryanbishop.co.uk/ai-portfolio/AI_ML_Reference_Guide.html`, scale 0.55, scrolling disabled, no GitHub URL exposed); right = dark HEOR bespoke edition teaser (3 bullets, gold "Enquire" CTA → contact.html) → caption row ("Live · interactive · always free" + "Open in a full window →")
+
+#### 10. Insights — `insights.html`
+- Full redesign: page header → featured World EPA Congress block (2-col: left = kicker/title/intro/date, right = YouTube embed `feNwZJwVJV4`) → 5 key findings grid (2×3, numbered in teal) → PDF download + NotebookLM credit → "More on LinkedIn" 3-card grid → "Themes I track" 3 cards (teal/ink/gold top borders) → footer
+
+#### 11. Contact — `contact.html`
+- Full redesign: page header ("Start a conversation. I read everything.") → 2 channel cards (Email teal / LinkedIn gold) → 2-col (What I'm open to / Current status) → teal-mist "What makes conversations valuable" list → footer
+
+#### 12. Redirect Stubs
+- `expertise.html` → redirects to `index.html#how-i-help` (Expertise content consolidated into How I can help)
+- `portfolio.html` → redirects to `resources.html` (Portfolio content consolidated into Resources)
+
+### Integration Audit
+All integrations confirmed on every new/updated page:
+- **Cookiebot** `0a51728e-9605-4721-8f30-aab8e9b7683c` — loads first, before GTM ✅
+- **GTM** `GTM-KQFB42D4` — in `<head>` + noscript `<iframe>` after `<body>` ✅
+- **Google Analytics** `G-0JWHPFXC8B` — in `<head>` ✅
+- **EmailOctopus** form `40515d04-30ee-11f1-865c-639eca6614fa` — on Home (brief band), Resources hub (featured card), AI Brief (signup band) ✅
+- **PDF downloads** — all 8 brief issues + 5 AI Literacy PDFs + WEPA Congress PDF linked to real repo paths ✅
+
+### Preview QC ✅
+- Home: hero, nav, help cards, audiences split, brief band, credibility strip, footer — all correct
+- Resources dropdown: opens on click, all 4 items with correct accent colours, closes on outside-click
+- AI Literacy modal: dark scrim, embedded YouTube, blurb, bullets, PDF buttons, NotebookLM credit, × close
+- AI Brief: meta cards, featured №8 with "Latest issue" badge, archive table rows №7→№1
+- Insights: World EPA featured block, 5 findings grid, "More on LinkedIn" cards, themes
+- Zero console errors across all pages
+
+### Nav Structure (new)
+Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insights) · Contact + "Get in touch" CTA button
+
+### Pages Not Changed
+- `privacy.html`, `terms.html` — legal pages, no redesign required
+- `sitemap.xml`, `robots.txt`, `CNAME` — unchanged
+- All PDF files and `briefs/` directory — unchanged
+
+### Post-Deploy Actions Required
+- Push to `main` (git push origin main from Terminal — GitHub auth not accessible from sandbox)
+- Submit updated sitemap in Google Search Console (new pages: resources.html, reference-guide.html)
+- Request indexing of `resources.html`, `reference-guide.html` via URL Inspection tool
+- Confirm redirect behaviour for `expertise.html` and `portfolio.html` post-deploy
+
+---
+
+## Session: 2 June 2026
+
+### Context
+- Continued from the 1 June rebuild session — refinements, bug fixes and QC passes on the new business site
+- All changes to the live repo at `/Users/ryan/Documents/GitHub/ryanbishop.github.io/`
+
+### Completed Tasks
+
+#### 1. Resources Hub — Direct Nav Access
+- **Issue:** Clicking "Resources" in the nav only opened the dropdown; there was no way to navigate directly to `resources.html`
+- **Fix:** Split the nav Resources item into two parts: the word "Resources" as a `<a href="resources.html">` link, and a separate `<button class="site-nav__caret-btn">` that toggles the dropdown
+- **Files changed:** `nav.js` (updated to target `.site-nav__caret-btn`), `styles.css` (new `.site-nav__caret-btn` styles), all 8 HTML pages (nav HTML updated)
+
+#### 2. Footer Logo Size
+- **Issue:** Footer logo was 32px vs nav logo 40px — inconsistent sizing
+- **Fix:** Updated `.site-footer__brand-logo img` from `width/height: 32px` to `40px`
+- **Files changed:** `styles.css`
+
+#### 3. EmailOctopus Form — Full Redesign
+- **Issue:** Default EmailOctopus widget rendered its own logo, title text, body text, stacked fields, and purple button — clashing with the dark band design
+- **Fix:** CSS overrides + `eo-fix.js` JavaScript helper (applied via inline styles to beat async-injected Bootstrap/EO styles)
+  - Hidden: injected title (`eo-block="title"`), description (`eo-block="text"`), logo (`.eo-image`), powered-by footer (`.mastfoot`)
+  - Removed: Bootstrap utility padding (`pt-5`, `pb-5`, `p-3`) that was creating large gaps
+  - Restyled: inputs to semi-transparent white-on-dark, submit button to gold (`#F59E0B`/`var(--rb-gold-accent)`) with ink text
+  - Layout: fields rendered side-by-side (flex row) with Subscribe button full-width below
+  - Placeholders shortened: "Enter your first name" → "First name"; "Enter your email address here" → "Email address"
+- **Root cause note:** EmailOctopus injects Bootstrap via async `<script>`, which cascades after the site stylesheet even with `!important`. Inline styles via `eo-fix.js` were required to reliably override. Percentage widths on `.align-mid` resolved against a 259px containing block due to EmailOctopus's internal layout — fixed by setting `wrapper.offsetWidth` as a pixel value instead of a percentage.
+- **Files added:** `eo-fix.js`
+- **Files changed:** `styles.css`; `eo-fix.js` loaded on `index.html`, `resources.html`, `brief.html`
+
+#### 4. Copy Edits
+- `index.html` brief band body: removed "no sign-up hoops."
+- `brief.html` signup band title: "Free. No sign-up hoops. Unsubscribe any time." → "Free. Unsubscribe any time."
+
+#### 5. Footer "Ryan Bishop Consulting Ltd" — One Line Fix
+- **Issue:** Footer wordmark wrapped to two lines; nav wordmark stayed on one line
+- **Root cause:** Nav wordmark had `white-space: nowrap`; footer wordmark did not
+- **Fix:** Added `white-space: nowrap` to `.site-footer__brand-logo span`
+- **Supporting change:** Footer grid adjusted from `1.4fr 1fr 1fr 1fr` to `1.6fr 0.7fr 1fr 1fr` — Navigate column narrowed (it only carries 3 short links) to give the brand column more room
+- **Files changed:** `styles.css`
+
+### Preview QC ✅
+- Resources dropdown: opens via ▾ caret, "Resources" word navigates to hub — both confirmed
+- EmailOctopus form: clean dark band integration, side-by-side fields, gold button, no gap, correct placeholders — confirmed on index.html and brief.html
+- Footer wordmark: single line on desktop viewport, consistent with nav — confirmed
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|

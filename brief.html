@@ -1,412 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="canonical" href="https://ryanbishop.co.uk/brief.html">
-    <!-- Cookiebot Consent Management - must load before GTM -->
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="0a51728e-9605-4721-8f30-aab8e9b7683c" data-blockingmode="auto" type="text/javascript"></script>
-    <!-- End Cookiebot -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KQFB42D4');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0JWHPFXC8B"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-0JWHPFXC8B');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary Meta Tags -->
-    <title>Weekly AI Brief | Ryan Bishop</title>
-    <meta name="title" content="Weekly AI Brief | Ryan Bishop">
-    <meta name="description" content="A free weekly resource combining current AI news with peer-reviewed academic papers — curated for professionals in pharma, market access, health economics, and HTA.">
-    <meta name="keywords" content="AI weekly brief, pharma AI news, HEOR AI, health technology assessment AI, market access AI, AI intelligence briefing, Ryan Bishop">
-    <meta name="author" content="Ryan Bishop">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ryanbishop.co.uk/brief.html">
-    <meta property="og:title" content="Weekly AI Brief | Ryan Bishop">
-    <meta property="og:description" content="A free weekly resource combining current AI news with peer-reviewed academic papers — curated for professionals in pharma, market access, health economics, and HTA.">
-    <meta property="og:image" content="https://ryanbishop.co.uk/ryan-bishop-photo.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ryanbishop.co.uk/brief.html">
-    <meta property="twitter:title" content="Weekly AI Brief | Ryan Bishop">
-    <meta property="twitter:description" content="A free weekly resource combining current AI news with peer-reviewed academic papers — curated for professionals in pharma, market access, health economics, and HTA.">
-    <meta property="twitter:image" content="https://ryanbishop.co.uk/ryan-bishop-photo.jpg">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://ryanbishop.co.uk/brief.html">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "name": "RB Weekly AI Brief",
-        "description": "A free weekly resource combining current AI news with peer-reviewed academic papers for professionals in pharma, market access, health economics, and HTA.",
-        "url": "https://ryanbishop.co.uk/brief.html",
-        "author": {
-            "@type": "Person",
-            "name": "Ryan Bishop",
-            "url": "https://ryanbishop.co.uk/"
-        },
-        "publisher": {
-            "@type": "Person",
-            "name": "Ryan Bishop",
-            "url": "https://ryanbishop.co.uk/"
-        }
-    }
-    </script>
-
-    <style>
-        /* ── Brief archive styles ── */
-        .brief-intro {
-            max-width: 680px;
-            margin-bottom: 2.5rem;
-        }
-
-        .brief-intro p {
-            color: var(--gray-dark);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .brief-tagline {
-            font-style: italic;
-            color: var(--teal-primary);
-            font-size: 1.05rem;
-            border-left: 3px solid var(--gold);
-            padding-left: 1rem;
-            margin: 1.5rem 0 2rem;
-            text-align: center;
-        }
-
-        .brief-meta-row {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-            padding: 1rem 1.5rem;
-            background: var(--gray-light);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--gray-medium);
-        }
-
-        .brief-meta-row span strong {
-            color: var(--gray-dark);
-        }
-
-        /* Archive table */
-        .brief-archive {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 3rem;
-        }
-
-        .brief-archive thead th {
-            background: var(--teal-primary);
-            color: white;
-            font-family: 'Merriweather', serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 0.75rem 1rem;
-            text-align: left;
-        }
-
-        .brief-archive thead th:last-child {
-            text-align: center;
-            width: 120px;
-        }
-
-        .brief-archive tbody tr {
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .brief-archive tbody tr:nth-child(even) {
-            background: var(--gray-light);
-        }
-
-        .brief-archive tbody tr:hover {
-            background: #e0f2f1;
-        }
-
-        .brief-archive td {
-            padding: 0.9rem 1rem;
-            font-size: 0.9rem;
-            color: var(--gray-dark);
-            vertical-align: top;
-        }
-
-        .brief-issue-num {
-            font-weight: 600;
-            color: var(--teal-dark);
-            white-space: nowrap;
-        }
-
-        .brief-date {
-            color: var(--gray-medium);
-            font-size: 0.85rem;
-            white-space: nowrap;
-        }
-
-        .brief-standout {
-            line-height: 1.5;
-        }
-
-        .brief-download {
-            text-align: center;
-        }
-
-        .brief-download a {
-            display: inline-block;
-            background: var(--teal-primary);
-            color: white;
-            padding: 0.4rem 0.9rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-            white-space: nowrap;
-        }
-
-        .brief-download a:hover {
-            background: var(--teal-dark);
-        }
-
-        .brief-coming-soon {
-            color: var(--gray-medium);
-            font-style: italic;
-            font-size: 0.85rem;
-        }
-
-        /* RAI note */
-        .brief-rai {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: var(--gray-medium);
-            padding: 1rem 1.5rem;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 640px) {
-            .brief-archive thead th:nth-child(3) { display: none; }
-            .brief-archive td:nth-child(3) { display: none; }
-            .brief-meta-row { flex-direction: column; gap: 0.5rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="0a51728e-9605-4721-8f30-aab8e9b7683c" data-blockingmode="auto" type="text/javascript"></script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KQFB42D4');</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0JWHPFXC8B"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0JWHPFXC8B');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Brief — Ryan Bishop Consulting Ltd</title>
+  <meta name="description" content="A free weekly brief for pharma, market access, HEOR and HTA. Current AI news meets peer-reviewed research — every week.">
+  <link rel="canonical" href="https://ryanbishop.co.uk/brief.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQFB42D4"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQFB42D4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="container">
-            <a href="index.html" class="nav-brand">
-                <img src="logo.png" alt="Ryan Bishop Logo" class="nav-logo">
-                <span>Ryan Bishop</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="insights.html">Insights</a></li>
-                <li><a href="brief.html" class="active">AI Brief</a></li>
-                <li><a href="ai-literacy.html">AI Literacy</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__brand">
+      <img src="logo.png" alt="Ryan Bishop" class="site-nav__logo">
+      <span class="site-nav__wordmark">Ryan Bishop Consulting Ltd</span>
+    </a>
+    <nav class="site-nav__links">
+      <a href="index.html" class="site-nav__link">Home</a>
+      <a href="about.html" class="site-nav__link">About</a>
+      <div class="site-nav__dropdown-wrap">
+        <a href="resources.html" class="site-nav__link active">Resources</a>
+        <button class="site-nav__caret-btn" aria-expanded="false" aria-label="Open Resources menu" aria-haspopup="true"><span class="site-nav__caret">▾</span></button>
+        <div class="site-nav__dropdown" role="menu">
+          <a href="brief.html" class="site-nav__dropdown-item"><div class="site-nav__dropdown-item-title gold">AI Brief</div><div class="site-nav__dropdown-item-desc">Weekly healthcare-AI digest</div></a>
+          <a href="ai-literacy.html" class="site-nav__dropdown-item"><div class="site-nav__dropdown-item-title">AI Literacy</div><div class="site-nav__dropdown-item-desc">Plain-English explainers</div></a>
+          <a href="reference-guide.html" class="site-nav__dropdown-item"><div class="site-nav__dropdown-item-title ink">AI &amp; ML Reference</div><div class="site-nav__dropdown-item-desc">Interactive guide</div></a>
+          <a href="insights.html" class="site-nav__dropdown-item"><div class="site-nav__dropdown-item-title gold">Insights</div><div class="site-nav__dropdown-item-desc">Long-form analysis</div></a>
         </div>
+      </div>
+      <a href="contact.html" class="site-nav__link">Contact</a>
     </nav>
+    <div class="site-nav__cta"><a href="contact.html" class="btn btn-primary">Get in touch</a></div>
+    <button class="site-nav__toggle" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Weekly AI Brief</h1>
-            <p>Current AI news meets peer-reviewed research — every week</p>
-        </div>
-    </section>
+<div class="page-header">
+  <div class="page-header__kicker">Resources · AI Brief</div>
+  <h1 class="page-header__title">Current AI news meets peer-reviewed research — every week.</h1>
+  <p class="page-header__sub">A free weekly brief for professionals in pharma, market access, health economics and HTA. Four themed news sections with a plain-English "So what?", plus three recent PubMed papers, lay-summarised. AI moves faster than peer review — this tracks both.</p>
+</div>
 
-    <!-- Content -->
-    <section class="content">
-        <div class="container">
+<!-- Meta cards -->
+<section class="section-wrap">
+  <div class="meta-cards meta-cards--3">
+    <div class="meta-card"><div class="meta-card__key">Format</div><div class="meta-card__val">PDF — free, no sign-up</div></div>
+    <div class="meta-card"><div class="meta-card__key">Frequency</div><div class="meta-card__val">Weekly</div></div>
+    <div class="meta-card"><div class="meta-card__key">Audience</div><div class="meta-card__val">Pharma · market access · HEOR · HTA</div></div>
+  </div>
+</section>
 
-            <div class="brief-intro">
-                <p>Welcome to a free weekly resource combining current AI news with peer-reviewed academic papers — curated for professionals working in pharma, market access, health economics, and HTA.</p>
-                <p>Each issue covers four themed news sections with a plain-English 'So what?' for every story, alongside three recent PubMed papers with lay summaries and direct links to source material.</p>
-                <p class="brief-tagline">AI moves faster than peer review. This brief tracks both.</p>
-            </div>
+<!-- Featured latest issue -->
+<section class="section-wrap">
+  <div class="featured-issue">
+    <div class="featured-issue__left">
+      <div class="featured-issue__badge-row">
+        <span class="featured-issue__num">№8</span>
+        <span class="featured-issue__badge">Latest issue</span>
+        <span class="featured-issue__date">26 May 2026</span>
+      </div>
+      <div class="featured-issue__standout-label">Standout story</div>
+      <p class="featured-issue__standout">NIHR i4i £10m funding call closes — the direct-funded route for companies with AI-enabled diagnostics holding a NICE Early Value Assessment to generate the RWE required for full NICE guidance and NHS-wide reimbursement.</p>
+      <div class="featured-issue__themes">
+        <div class="featured-issue__theme"><span class="featured-issue__theme-num">01</span>Regulatory &amp; HTA Signals</div>
+        <div class="featured-issue__theme"><span class="featured-issue__theme-num">02</span>Regulation &amp; Policy</div>
+        <div class="featured-issue__theme"><span class="featured-issue__theme-num">03</span>Healthcare &amp; Life Sciences</div>
+        <div class="featured-issue__theme"><span class="featured-issue__theme-num">04</span>Models &amp; Research</div>
+      </div>
+    </div>
+    <div class="featured-issue__right">
+      <div class="featured-issue__right-kicker">Inside this issue</div>
+      <div class="featured-issue__right-body">Four themed sections, each story with a "So what?" · three PubMed papers, lay-summarised.</div>
+      <a href="briefs/RB Weekly AI Brief - Issue 8 - 26.05.2026.pdf" target="_blank" class="btn btn-gold" style="text-align:center;justify-content:center;">Download Issue №8 (PDF) ↓</a>
+    </div>
+  </div>
+</section>
 
-            <div class="brief-meta-row">
-                <span><strong>Format:</strong> PDF — free to download, no sign-up required</span>
-                <span><strong>Frequency:</strong> Weekly</span>
-                <span><strong>Audience:</strong> Pharma, market access, HEOR, HTA professionals</span>
-            </div>
+<!-- Earlier issues archive -->
+<div class="archive-section">
+  <h2>Earlier issues</h2>
+  <div class="archive-table">
+    <div class="archive-table__head"><span>Issue</span><span>Date</span><span>Standout story</span><span>Download</span></div>
+    <div class="archive-row">
+      <span class="archive-row__num">№7</span>
+      <span class="archive-row__date">20 May 2026</span>
+      <span class="archive-row__story">European Commission's stakeholder consultation on AI transparency obligations closes 3 June — disclosure for interactive AI, deepfake labelling and biometric categorisation under Article 50 of the EU AI Act.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 7 - 20.05.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+    <div class="archive-row">
+      <span class="archive-row__num">№6</span>
+      <span class="archive-row__date">12 May 2026</span>
+      <span class="archive-row__story">EU AI Act high-risk deadline confirmed — 2 Dec 2027 for standalone systems, 2 Aug 2028 for medical devices. Pharma and healthcare AI finally have a definitive planning horizon.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 6 - 12.05.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+    <div class="archive-row">
+      <span class="archive-row__num">№5</span>
+      <span class="archive-row__date">6 May 2026</span>
+      <span class="archive-row__story">EU AI Act's high-risk obligations are scheduled for 2 Aug 2026 — 13 weeks away. A Digital Omnibus proposal may push this to Dec 2027, but it isn't formally adopted: 2 August remains the current legal obligation.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 5 - 06.05.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+    <div class="archive-row">
+      <span class="archive-row__num">№4</span>
+      <span class="archive-row__date">28 Apr 2026</span>
+      <span class="archive-row__story">New UK clinical trial regulations came into force today — post-Brexit regulatory divergence from EU frameworks is now a live consideration for AI-enabled diagnostics seeking UK market entry.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 4 - 28.04.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+    <div class="archive-row">
+      <span class="archive-row__num">№3</span>
+      <span class="archive-row__date">21 Apr 2026</span>
+      <span class="archive-row__story">Novo Nordisk partners with OpenAI to accelerate drug discovery — as drugmakers increasingly turn to AI partnerships at scale, the implications for evidence generation and HTA submissions are growing harder to ignore.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 3 - 21.04.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+    <div class="archive-row">
+      <span class="archive-row__num">№2</span>
+      <span class="archive-row__date">14 Apr 2026</span>
+      <span class="archive-row__story">Eli Lilly commits $2.75bn to Insilico Medicine for AI-discovered candidates — the first compound from target identification to Phase I in under 30 months, raising questions for HTA bodies evaluating shorter evidence histories.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 2 - 14.04.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+    <div class="archive-row">
+      <span class="archive-row__num">№1</span>
+      <span class="archive-row__date">31 Mar 2026</span>
+      <span class="archive-row__story">Pilot issue — Insilico's ISM001-055 becomes the first AI-designed drug against an AI-discovered target to show positive Phase IIa results; over 60% time reduction from initiation to preclinical candidate.</span>
+      <a href="briefs/RB Weekly AI Brief - Issue 1 - 31.03.2026.pdf" target="_blank" class="archive-row__dl">PDF ↓</a>
+    </div>
+  </div>
+</div>
 
-            <h2>Issue Archive</h2>
+<!-- Subscribe band -->
+<div class="signup-band">
+  <div class="signup-band__inner">
+    <div>
+      <div class="signup-band__kicker">Get the next issue</div>
+      <div class="signup-band__title">Free. Unsubscribe any time.</div>
+      <div class="signup-band__sub">One email per week. Direct PDF link. Also signposted on LinkedIn.</div>
+    </div>
+    <!-- EmailOctopus embedded form -->
+    <script async src="https://eomail5.com/form/40515d04-30ee-11f1-865c-639eca6614fa.js" data-form="40515d04-30ee-11f1-865c-639eca6614fa"></script>
+  </div>
+</div>
 
-            <table class="brief-archive">
-                <thead>
-                    <tr>
-                        <th>Issue</th>
-                        <th>Date</th>
-                        <th>Standout story</th>
-                        <th>Download</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="brief-issue-num">Issue 8</td>
-                        <td class="brief-date">26 May 2026</td>
-                        <td class="brief-standout">The NIHR i4i £10m funding call closes tomorrow — 27 May 2026. It is the direct funded mechanism for companies with AI-enabled diagnostics or digital health tools holding a NICE Early Value Assessment recommendation to generate the real-world evidence required for full NICE guidance and NHS-wide reimbursement.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 8 - 26.05.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '8', 'date': '26.05.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 7</td>
-                        <td class="brief-date">20 May 2026</td>
-                        <td class="brief-standout">The European Commission's stakeholder consultation on AI transparency obligations closes 3 June 2026 — two weeks away. The draft guidelines clarify disclosure requirements for interactive AI systems, deepfake labelling, and biometric categorisation under Article 50 of the EU AI Act, all applying from August 2026.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 7 - 20.05.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '7', 'date': '20.05.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 6</td>
-                        <td class="brief-date">12 May 2026</td>
-                        <td class="brief-standout">The EU AI Act high-risk deadline is now confirmed — December 2, 2027 for standalone systems, August 2, 2028 for medical devices. After months of uncertainty, pharmaceutical and healthcare AI companies finally have a definitive planning horizon. The compliance architecture is unchanged. The clock is running.<br><br>Also in Issue 6: why Anthropic decided its latest model was too dangerous to release.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 6 - 12.05.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '6', 'date': '12.05.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 5</td>
-                        <td class="brief-date">6 May 2026</td>
-                        <td class="brief-standout">The EU AI Act's high-risk obligations are currently scheduled to take effect August 2, 2026 — 13 weeks away. A Digital Omnibus proposal is expected to push this to December 2027, but it hasn't been formally adopted. August 2 remains the current legal obligation.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 5 - 06.05.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '5', 'date': '06.05.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 4</td>
-                        <td class="brief-date">28 Apr 2026</td>
-                        <td class="brief-standout">New UK clinical trial regulations came into force today — designed to give patients faster access to new treatments while maintaining safety standards. Post-Brexit regulatory divergence from EU frameworks is now a live consideration for AI-enabled diagnostics and digital therapeutics seeking UK market entry.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 4 - 28.04.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '4', 'date': '28.04.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 3</td>
-                        <td class="brief-date">21 Apr 2026</td>
-                        <td class="brief-standout">Novo Nordisk partners with OpenAI to accelerate drug discovery — using AI to analyse complex datasets and identify promising new compounds. As drugmakers increasingly turn to AI partnerships at scale, the implications for evidence generation and HTA submissions are growing harder to ignore.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 3 - 21.04.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '3', 'date': '21.04.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 2</td>
-                        <td class="brief-date">14 Apr 2026</td>
-                        <td class="brief-standout">Eli Lilly commits $2.75 billion to Insilico Medicine for AI-discovered drug candidates — the first compound advanced from target identification to Phase I in under 30 months, raising urgent questions for HTA bodies evaluating compounds with shorter clinical evidence histories.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 2 - 14.04.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '2', 'date': '14.04.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="brief-issue-num">Issue 1<br><span style="font-weight: 400; font-size: 0.8rem; color: var(--gray-medium);">(Pilot)</span></td>
-                        <td class="brief-date">31 Mar 2026</td>
-                        <td class="brief-standout">Insilico Medicine's ISM001-055 becomes the first AI-designed drug targeting an AI-discovered target to show positive Phase IIa results — over 60% time reduction from project initiation to preclinical candidate.</td>
-                        <td class="brief-download">
-                            <a href="briefs/RB Weekly AI Brief - Issue 1 - 31.03.2026.pdf" download
-                               onclick="gtag('event', 'brief_download', {'issue': '1', 'date': '31.03.2026'});">
-                                Download &darr;
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Add new issues above this line -->
-                </tbody>
-            </table>
-
-            <!-- Email sign-up -->
-            <div style="margin-top: 3rem; padding: 2rem; background-color: #f0fdfa; border-radius: 8px; border-left: 4px solid #0d9488; text-align: center;">
-                <strong style="font-size: 1.05rem; color: #0f766e;">Get new issues by email</strong>
-                <p style="margin: 0.5rem 0 1.25rem; color: #4b5563; font-size: 0.95rem;">Free. Weekly. No spam. Unsubscribe any time.</p>
-                <div style="display: flex; justify-content: center;">
-                    <script async src="https://eomail5.com/form/40515d04-30ee-11f1-865c-639eca6614fa.js" data-form="40515d04-30ee-11f1-865c-639eca6614fa"></script>
-                </div>
-                <p style="margin-top: 1rem; font-size: 0.85rem; color: #6b7280;">Or follow on <a href="https://www.linkedin.com/in/ryan-bishop-66248164/" target="_blank">LinkedIn</a> — each new issue is also signposted there.</p>
-            </div>
-
-            <p class="brief-rai">Each issue of the RB Weekly AI Brief is automatically generated using AI. Readers are encouraged to verify information via the source links provided in each PDF.</p>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-row footer-brand">
-                <img src="logo.png" alt="RB Logo" class="footer-logo">
-                <p style="margin: 0;">&copy; 2026 Ryan Bishop. All rights reserved.</p>
-            </div>
-            <div class="footer-row footer-links">
-                <a href="https://www.linkedin.com/in/ryan-bishop-66248164/" target="_blank">LinkedIn</a>
-                <a href="/cdn-cgi/l/email-protection#1c6e657d725c6e657d727e756f74736c327f73326977">Email</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms &amp; Conditions</a>
-            </div>
-        </div>
-    </footer>
-    <script src="nav.js"></script>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div><div class="site-footer__brand-logo"><img src="logo-white.png" alt="Ryan Bishop"><span>Ryan Bishop Consulting Ltd</span></div><p class="site-footer__brand-text">AI strategy for pharmaceutical and healthcare organisations — grounded in twelve years of evidence work. Surrey, UK.</p></div>
+    <div><div class="site-footer__col-head">Navigate</div><div class="site-footer__col-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div>
+    <div><div class="site-footer__col-head">Resources</div><div class="site-footer__col-links"><a href="brief.html">AI Brief</a><a href="ai-literacy.html">AI Literacy</a><a href="reference-guide.html">AI &amp; ML Reference</a><a href="insights.html">Insights</a></div></div>
+    <div><div class="site-footer__col-head">Connect</div><div class="site-footer__col-links"><a href="mailto:ryan@ryanbishop.co.uk">ryan@ryanbishop.co.uk</a><a href="https://www.linkedin.com/in/ryan-bishop-66248164/" target="_blank" rel="noopener">LinkedIn</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a></div></div>
+  </div>
+  <div class="site-footer__bottom"><span>© 2026 Ryan Bishop Consulting Ltd. All rights reserved.</span><span>BCS — The Chartered Institute for IT</span></div>
+</footer>
+<script src="nav.js"></script>
+<script src="eo-fix.js"></script>
 </body>
 </html>
