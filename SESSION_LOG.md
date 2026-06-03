@@ -543,6 +543,45 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 3 Jun 2026
+
+### Context
+- Issue 9 of the RB Weekly AI Brief published today
+- Site has been redesigned since last brief session — brief.html, resources.html and index.html all now require updates per issue
+
+### Completed Tasks
+
+#### 1. Issue 9 — `brief.html`
+- Updated featured latest issue block: №9, 3 Jun 2026, Robin/Nature standout story, new PDF download link
+- Demoted Issue 8 to archive: added №8 row at top of Earlier Issues section
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 9 - 03.06.2026.pdf`
+
+#### 2. Issue 9 — `resources.html`
+- Added №9 to top of "Recent issues" panel
+- Dropped №6 (panel shows 3 most recent: №9, №8, №7)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 9 — `index.html`
+- Updated brief preview widget: №9 · 3 Jun, three story bullets supplied by Ryan:
+  - Robin published in Nature — AI autonomously discovers drug candidate in 30 minutes
+  - NHS SBS £900m AI procurement framework — supplier submissions close 23 June
+  - EU AI Act dual compliance confirmed — AI Act plus MDR/IVDR for medical devices
+- **Files changed:** `index.html`
+
+#### 4. Mobile Footer Fix — `styles.css`
+- **Issue:** Footer inner grid (`1fr 1fr`) squeezed 4 sections into cramped 2×2 layout; bottom bar (`justify-content: space-between`) put long copyright text side-by-side with BCS credit at 375px
+- **Fix:** In `@media (max-width: 900px)` — changed `site-footer__inner` to `grid-template-columns: 1fr; gap: 28px` (full-width stack); added `site-footer__bottom: flex-direction: column; gap: 6px; text-align: center`
+- Verified via inspect: inner resolves to 327px single column ✅, bottom bar stacks vertically ✅
+- **Files changed:** `styles.css`
+
+#### 5. Issue Publishing Checklist — `ISSUE_PUBLISHING.md`
+- Created step-by-step checklist documenting all files that change each issue, with code snippets for each update
+- Covers: PDF copy, brief.html (featured + archive), resources.html (recent issues panel), index.html (preview widget), preview server setup, and commit workflow
+- **Files added:** `ISSUE_PUBLISHING.md`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|

@@ -822,5 +822,6 @@ h3 {
   .site-nav__dropdown { position: static; box-shadow: none; border: none; padding: 8px 0 0 16px; }
   .ref-embed-wrap, .heor-teaser { height: 500px; }
   .archive-table__head, .archive-row { grid-template-columns: 60px 90px 1fr 60px; font-size: 12px; }
-  .site-footer__inner { grid-template-columns: 1fr 1fr; }
+  .site-footer__inner { grid-template-columns: 1fr; gap: 28px; }
+  .site-footer__bottom { flex-direction: column; gap: 6px; text-align: center; }
 }
