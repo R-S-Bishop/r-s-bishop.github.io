@@ -614,6 +614,35 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 11 Jun 2026
+
+### Context
+- Google Search Console email received: "Videos structured data issues detected" — 2 non-critical issues flagged on ryanbishop.co.uk
+- Issues: (1) Invalid datetime value for "uploadDate"; (2) Datetime property "uploadDate" is missing a timezone
+- GSC LinkedIn post hashtag advice also provided this session
+
+### Completed Tasks
+
+#### 1. VideoObject Schema — `uploadDate` Fix
+- **Issue:** All VideoObject JSON-LD schemas used bare `YYYY-MM-DD` date format for `uploadDate`. Google's VideoObject spec requires a full ISO 8601 datetime with timezone (e.g. `2026-03-25T00:00:00+00:00`). Bare dates caused two non-critical GSC warnings.
+- **Verified against:** Google Search Console developer documentation (developers.google.com/search/docs/appearance/structured-data/video) — confirmed full datetime with timezone is required format and all examples use it
+- **Fix:** Appended `T00:00:00+00:00` (UTC) to all `uploadDate` values across both files
+- **Files changed:** `ai-literacy.html` (5 VideoObject schemas updated), `insights.html` (1 VideoObject schema updated)
+- **Dates updated:**
+  - `ai-literacy.html`: `2026-03-25` × 3, `2026-04-19`, `2026-05-31` → all now `T00:00:00+00:00`
+  - `insights.html`: `2026-03-09` → `2026-03-09T00:00:00+00:00`
+
+#### 2. LinkedIn Post — Resources Hub (Company Page)
+- Drafted Option A LinkedIn post for Ryan Bishop Consulting Ltd company page announcing the new Resources Hub
+- Recommended hashtags for company page post: `#HEOR` `#MarketAccess` `#PharmaAI` `#HealthcareAI` `#ResponsibleAI`
+- Advice: company pages have lower organic reach — resharing from personal profile recommended to extend reach
+
+### Post-Deploy Actions Required
+- Push to `main` (`git push origin main` from Terminal)
+- Use "Fix Videos structured data issues" button in GSC email to request re-validation (faster than waiting for natural crawl)
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
