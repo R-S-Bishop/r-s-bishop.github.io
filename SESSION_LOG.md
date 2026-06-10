@@ -582,6 +582,38 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 9 Jun 2026
+
+### Context
+- Issue 10 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Preview Server Fix — `.claude/launch.json`
+- **Issue:** `cd /tmp && ...` stopped Python from running when `cd` returned non-zero due to shell-init getcwd warning
+- **Fix:** Changed `&&` to `;` so Python runs regardless: `cd /tmp; /usr/bin/python3 /tmp/rb_proxy.py`
+- **Files changed:** `.claude/launch.json`
+
+#### 2. Issue 10 — `brief.html`
+- Updated featured latest issue block: №10, 9 Jun 2026, AI drug discovery pipeline standout story, new PDF download link
+- Added №9 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 10 - 09.06.2026.pdf`
+
+#### 3. Issue 10 — `resources.html`
+- Added №10 to top of "Recent issues" panel
+- Dropped №7 (panel shows 3 most recent: №10, №9, №8)
+- **Files changed:** `resources.html`
+
+#### 4. Issue 10 — `index.html`
+- Updated brief preview widget: №10 · 9 Jun, three story bullets:
+  - Over 200 AI-discovered drugs in clinical trials — first FDA approval projected 2027–28
+  - EU Commission high-risk AI consultation closes 23 June — final two weeks to respond
+  - Microsoft MAI models launched at Build 2026 — clean-data provenance for regulated industries
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|

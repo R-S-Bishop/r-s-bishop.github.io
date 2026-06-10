@@ -10,7 +10,7 @@
     {
       "name": "Ryan Bishop site (static)",
       "runtimeExecutable": "/bin/bash",
-      "runtimeArgs": ["-c", "cd /tmp && /usr/bin/python3 /tmp/rb_proxy.py"],
+      "runtimeArgs": ["-c", "cd /tmp; /usr/bin/python3 /tmp/rb_proxy.py"],
       "port": 3006,
       "autoPort": false
     }
