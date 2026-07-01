@@ -643,6 +643,87 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 17 Jun 2026
+
+### Context
+- Issue 11 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 11 — `brief.html`
+- Updated featured latest issue block: №11, 17 Jun 2026, Fable 5 / government takedown standout story, new PDF download link
+- Added №10 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 11 - 17.06.2026.pdf`
+
+#### 2. Issue 11 — `resources.html`
+- Added №11 to top of "Recent issues" panel
+- Dropped №8 (panel shows 3 most recent: №11, №10, №9)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 11 — `index.html`
+- Updated brief preview widget: №11 · 17 Jun, three story bullets supplied by Ryan:
+  - Fable 5 launched June 9 — pulled by US government June 12, both models remain offline
+  - EMA 2025 AI Observatory Report — regulators tracking AI use in submissions
+  - EU First Joint Clinical Assessment completed — tovorafenib sets the evidence standard
+- **Files changed:** `index.html`
+
+---
+
+## Session: 24 Jun 2026
+
+### Context
+- Issue 12 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 12 — `brief.html`
+- Updated featured latest issue block: №12, 24 Jun 2026, MHRA/NICE standout story, new PDF download link
+- Added №11 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 12 - 24.06.2026.pdf`
+
+#### 2. Issue 12 — `resources.html`
+- Added №12 to top of "Recent issues" panel
+- Dropped №9 (panel shows 3 most recent: №12, №11, №10)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 12 — `index.html`
+- Updated brief preview widget: №12 · 24 Jun, three story bullets supplied by Ryan:
+  - MHRA National Commission recommendations due summer 2026 — UK AI medical device framework incoming
+  - NICE 2026–27 priorities — AI evidence-generation guidance to supersede existing position statement
+  - Google DeepMind AI Control Roadmap — frontier labs treating their own agents as insider threats
+- **Files changed:** `index.html`
+
+---
+
+## Session: 1 Jul 2026
+
+### Context
+- Issue 13 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 13 — `brief.html`
+- Updated featured latest issue block: №13, 1 Jul 2026, EU AI Act Omnibus standout story, new PDF download link
+- Added №12 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 13 - 01.07.2026.pdf`
+
+#### 2. Issue 13 — `resources.html`
+- Added №13 to top of "Recent issues" panel
+- Dropped №10 (panel shows 3 most recent: №13, №12, №11)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 13 — `index.html`
+- Updated brief preview widget: №13 · 1 Jul, three story bullets supplied by Ryan:
+  - EU Council formally adopts AI Act Omnibus — high-risk AI deadlines confirmed, medical device compliance extended to August 2028
+  - GPT-5.6 restricted by US government at launch — second frontier model gated in June 2026, following Fable 5
+  - EMA Annex 22 workshop convened — binding AI-in-manufacturing guidance for pharma now in development
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
