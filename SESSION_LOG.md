@@ -724,6 +724,58 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 3 Jul 2026
+
+### Context
+- New standalone interactive experience: "From Silicon to Inference" — a 26-stage cinematic journey from raw silicon to AI inference
+- Supplied as a Claude Design handoff: `silicon-to-inference.html` + `assets/` (2 PNGs) + `illustrations/` (52 SVGs) + `og_silicon_to_inference.png`
+- Brief: deploy as standalone full-page experience (no site nav wrapper, no iframe), wire into site nav/footer, homepage, and reference-guide cross-link
+
+### Completed Tasks
+
+#### 1. New Files Added
+- `silicon-to-inference.html` — main experience file (repo root)
+- `assets/rb-logo-white.png` + `assets/rb-logo.png` — logo assets used by the experience (new `assets/` dir at repo root, separate from the main site's `logo-white.png`)
+- `illustrations/` — 52 SVGs (node + panel pair per stage, stages 01–23 plus 14b/15b/16b Model Creation stages); panel SVGs loaded via `fetch()` at runtime so SMIL/CSS animations inline correctly
+- `og_silicon_to_inference.png` — 1200×630 Open Graph share image (repo root, matching existing image convention)
+
+#### 2. In-file Hookups — `silicon-to-inference.html`
+- **Cookiebot + GTM:** added `<script id="Cookiebot">` before GTM in `<head>` (same IDs, same load order as all site pages); GTM noscript `<iframe>` immediately after `<body>`
+- **Google Analytics:** `G-0JWHPFXC8B` gtag snippet added to `<head>`
+- **Meta tags:** updated `<title>` to include "Ltd"; added `<meta name="description">`, `og:type/url/title/description/image`, `twitter:card/url/title/image`, `<link rel="canonical">`; og:image absolute URL: `https://ryanbishop.co.uk/og_silicon_to_inference.png`
+- **Return link:** `← ryanbishop.co.uk` added to left of sticky header bar, before brand lockup — JetBrains Mono 11px, muted colour, subtle; links to `/index.html`
+- **Finale cross-link:** "Explore all 125 cards →" added as `btn-text` `<a>` in `.finale-actions` alongside existing restart/explore/home buttons; links to `/reference-guide.html`
+
+#### 3. Navigation — All 10 Pages
+- **Resources dropdown:** added "From Silicon to Inference / An interactive journey" with `ink` accent after "AI & ML Reference", before "Insights"
+- **Footer Resources column:** added "From Silicon to Inference" link after "AI & ML Reference"
+- **Files updated:** `index.html`, `about.html`, `resources.html`, `brief.html`, `ai-literacy.html`, `reference-guide.html`, `insights.html`, `contact.html`, `privacy.html`, `terms.html`
+
+#### 4. Homepage — `index.html`
+- Added second link in "For families & teams" audience card below "Explore AI Literacy →":
+  `From Silicon to Inference — An interactive journey →` → `silicon-to-inference.html`
+- Matches existing `audience-link` class
+
+#### 5. Reference Guide Cross-link — `reference-guide.html`
+- Added `See the cards in action — From Silicon to Inference →` in caption row below the iframe embed
+- Styled with existing `.ref-open-link` class (teal, bold, bordered)
+
+#### 6. Sitemap — `sitemap.xml`
+- Added `silicon-to-inference.html` entry: `lastmod 2026-07-03`, `changefreq monthly`, `priority 0.8`
+
+### Preview QC ✅
+- Title screen: logo, headline, "Begin the journey" CTA — correct
+- Stage journey: spine with 26 nodes, animated SVG panel illustrations loading via fetch(), layer legend, detail panel — all confirmed working
+- Sticky header: `← RYANBISHOP.CO.UK` return link visible top-left ✅
+- Nav dropdown: 5 items in correct order (AI Brief · AI Literacy · AI & ML Reference · From Silicon to Inference · Insights), ink accent on new item ✅
+
+### Post-Deploy Actions Required
+- `git push origin main` from Terminal
+- Resubmit sitemap in Google Search Console (new page added)
+- Validate share card at linkedin.com/post-inspector/ after deploy (og:image 1200×630 ✅)
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|

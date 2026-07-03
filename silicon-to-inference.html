@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="0a51728e-9605-4721-8f30-aab8e9b7683c" data-blockingmode="auto" type="text/javascript"></script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KQFB42D4');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0JWHPFXC8B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0JWHPFXC8B');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Silicon to Inference — Ryan Bishop Consulting Ltd</title>
+<meta name="description" content="An immersive interactive journey through the 26 stages that turn raw silicon into an AI answer — from ASML's EUV lithography and TSMC fabrication, through frontier model training, to the transformer inference running your prompt.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ryanbishop.co.uk/silicon-to-inference.html">
+<meta property="og:title" content="From Silicon to Inference">
+<meta property="og:description" content="Every answer from a language model begins as refined sand — and crosses half the world before it reaches you. A 26-stage interactive journey.">
+<meta property="og:image" content="https://ryanbishop.co.uk/og_silicon_to_inference.png">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://ryanbishop.co.uk/silicon-to-inference.html">
+<meta property="twitter:title" content="From Silicon to Inference">
+<meta property="twitter:image" content="https://ryanbishop.co.uk/og_silicon_to_inference.png">
+<link rel="canonical" href="https://ryanbishop.co.uk/silicon-to-inference.html">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Brand-dark palette — ink stage, teal signal, gold accent */
+    --ink:          #070b14;
+    --ink-2:        #0c1322;
+    --surface:      #111a2b;
+    --surface-up:   #1a2740;
+    --rule:         rgba(94,234,212,0.12);
+
+    --teal:         #2dd4bf;   /* signal */
+    --teal-primary: #0d9488;
+    --teal-dark:    #0f766e;
+    --teal-light:   #5eead4;
+    --teal-mist:    #99f6e4;
+    --gold:         #f59e0b;
+    --gold-light:   #fbbf24;
+
+    --text:         #f3f4f6;
+    --text-sec:     #aebbcf;
+    --text-muted:   #64748b;
+
+    --font-display: 'Merriweather', Georgia, serif;
+    --font-body:    'Inter', -apple-system, sans-serif;
+    --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+    --stage-w:      300px;
+    --pad:          160px;
+    --spine-y:      54%;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  /* radial vignette stage */
+  .stage-bg {
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(1400px 900px at 30% 18%, #11203a 0%, var(--ink-2) 46%, var(--ink) 78%);
+    z-index: 0;
+  }
+  /* ambient drifting circuit traces (parallax back layer) */
+  .ambient {
+    position: fixed; inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image:
+      linear-gradient(rgba(45,212,191,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,212,191,0.035) 1px, transparent 1px);
+    background-size: 64px 64px, 64px 64px;
+    mask-image: radial-gradient(900px 600px at 40% 50%, #000 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(900px 600px at 40% 50%, #000 0%, transparent 75%);
+  }
+
+  /* ─────────────────────────  TITLE SCREEN  ───────────────────────── */
+  .title-screen {
+    position: fixed; inset: 0;
+    z-index: 400;
+    background:
+      radial-gradient(1200px 800px at 50% 42%, #13243f 0%, var(--ink-2) 52%, var(--ink) 82%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 0 24px;
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.4,0,0.2,1);
+  }
+  .title-screen.hide {
+    opacity: 0;
+    transform: scale(1.06);
+    pointer-events: none;
+  }
+  .title-line {
+    width: min(620px, 78vw);
+    height: 2px;
+    margin-bottom: 36px;
+    background: linear-gradient(90deg, transparent, var(--teal) 18%, var(--teal-light) 50%, var(--teal) 82%, transparent);
+    position: relative;
+    opacity: 0.9;
+  }
+  .title-line::after {
+    content: '';
+    position: absolute; top: -3px; left: 0;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--teal-light);
+    box-shadow: 0 0 14px 3px var(--teal);
+    animation: titleScan 4.5s cubic-bezier(0.45,0,0.55,1) infinite;
+  }
+  @keyframes titleScan {
+    0%   { left: 0%; opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+  .title-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 22px;
+  }
+  .title-logo {
+    width: 64px; height: 64px;
+    margin-bottom: 22px;
+    opacity: 0.96;
+    animation: logoRise 0.9s ease 0.1s;
+  }
+  @keyframes logoRise { from { opacity:0.2; transform: translateY(10px); } to { opacity:0.96; transform:none; } }
+  .title-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(38px, 5.6vw, 62px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 30px;
+    max-width: 16ch;
+  }
+  .title-h1 em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+  .title-lead {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.65;
+    color: var(--text-sec);
+    max-width: 620px;
+    margin-bottom: 36px;
+  }
+  .title-actions {
+    display: flex; align-items: center; gap: 28px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .btn-begin {
+    font-family: var(--font-body);
+    font-size: 17px; font-weight: 600;
+    color: #04201c;
+    background: linear-gradient(180deg, var(--teal-light), var(--teal));
+    border: none;
+    padding: 15px 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 22px rgba(45,212,191,0.30);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+  .btn-begin:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(45,212,191,0.42); }
+  .btn-begin:active { transform: translateY(0); }
+  .btn-text {
+    font-family: var(--font-body);
+    font-size: 15px; font-weight: 500;
+    color: var(--text-sec);
+    background: none; border: none; cursor: pointer;
+    border-bottom: 1px solid rgba(174,187,207,0.35);
+    padding: 2px 1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-text:hover { color: var(--teal-light); border-color: var(--teal-light); }
+  .title-meta {
+    margin-top: 36px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ─────────────────────────  HEADER  ───────────────────────── */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 120;
+    padding: 18px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(7,11,20,0.96) 0%, rgba(7,11,20,0) 100%);
+    opacity: 0; transition: opacity 0.6s ease 0.3s;
+  }
+  .header.show { opacity: 1; }
+  .header-brand {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    color: var(--text-sec);
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .header-brand b { color: var(--teal-light); font-weight: 500; }
+  .brand-lockup { display: flex; align-items: center; gap: 11px; cursor: pointer; transition: opacity 0.2s ease; }
+  .brand-lockup:hover { opacity: 0.75; }
+  .brand-mark { width: 26px; height: 26px; opacity: 0.92; flex-shrink: 0; }
+  .header-title {
+    font-family: var(--font-display);
+    font-size: 16px; font-weight: 700;
+    color: var(--text);
+  }
+  .header-title em { font-style: italic; color: var(--teal-light); }
+  .header-right { display: flex; align-items: center; gap: 18px; }
+  .audio-toggle {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 13px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 7px;
+    transition: all 0.2s ease;
+  }
+  .audio-toggle:hover { color: var(--teal-light); border-color: var(--teal); }
+  .audio-toggle.on { color: var(--teal-light); border-color: var(--teal); background: rgba(45,212,191,0.08); }
+  .audio-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .audio-toggle.on .audio-dot { animation: audioPulse 1.4s ease-in-out infinite; }
+  @keyframes audioPulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+  /* ─────────────────────────  BORDER-CROSSING BAR  ───────────────────────── */
+  .geo-bar {
+    position: absolute;
+    top: 13%;
+    height: 56px;
+    display: flex; align-items: stretch;
+    z-index: 6;
+    pointer-events: none;
+  }
+  .geo-gate {
+    position: relative;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 20px;
+    border-left: 1px solid rgba(255,255,255,0.07);
+    opacity: 0.45;
+    transition: opacity 0.5s ease, background 0.5s ease;
+    overflow: hidden;
+  }
+  .geo-gate::before { /* flag stripe */
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--flag);
+    opacity: 0.85;
+  }
+  .geo-gate.active {
+    opacity: 1;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
+  }
+  .geo-gate-code {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--gate-color, var(--text-sec));
+    margin-bottom: 3px;
+  }
+  .geo-gate-role {
+    font-family: var(--font-body);
+    font-size: 11px; color: var(--text-sec);
+    margin-bottom: 2px;
+  }
+  .geo-gate-stat {
+    font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* "Now entering" narration */
+  .now-callout {
+    position: fixed;
+    top: 78px; left: 30px;
+    z-index: 110;
+    max-width: 340px;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+  .now-callout.show { opacity: 1; transform: translateY(0); }
+  .now-label {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .now-label .stripe { width: 22px; height: 3px; border-radius: 2px; background: var(--flag, var(--gold)); }
+  .now-place {
+    font-family: var(--font-display);
+    font-size: 19px; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .now-stat {
+    font-family: var(--font-body);
+    font-size: 12.5px; line-height: 1.5;
+    color: var(--text-sec);
+  }
+
+  /* ─────────────────────────  SCROLL / TIMELINE  ───────────────────────── */
+  .scroll-wrap {
+    position: fixed; inset: 0;
+    overflow-x: auto; overflow-y: hidden;
+    cursor: grab;
+    z-index: 10;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .scroll-wrap::-webkit-scrollbar { height: 0; }
+  .scroll-wrap.grabbing { cursor: grabbing; }
+
+  .timeline { position: relative; height: 100vh; }
+
+  /* spine */
+  .spine {
+    position: absolute; top: var(--spine-y); left: 0; right: 0;
+    height: 2px;
+    background: rgba(45,212,191,0.14);
+    transform: translateY(-50%);
+  }
+  .spine-progress {
+    position: absolute; top: 0; left: 0; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--teal-dark), var(--teal) 70%, var(--teal-light));
+    box-shadow: 0 0 10px var(--teal), 0 0 22px rgba(45,212,191,0.35);
+    transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  /* travelling signal pulse */
+  .signal {
+    position: absolute; top: var(--spine-y);
+    width: 12px; height: 12px; margin: -6px 0 0 -6px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    box-shadow: 0 0 12px 3px var(--teal), 0 0 26px 6px rgba(45,212,191,0.45);
+    opacity: 0;
+    z-index: 8;
+    pointer-events: none;
+  }
+
+  /* act interstitial bands behind spine */
+  .act-band {
+    position: absolute; top: 0; bottom: 0;
+    display: flex; align-items: flex-end; justify-content: center;
+    pointer-events: none;
+  }
+  .act-band-label {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 130px;
+    line-height: 1;
+    color: rgba(255,255,255,0.022);
+    letter-spacing: -0.02em;
+    margin-bottom: 8%;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* stages */
+  .stage {
+    position: absolute; top: var(--spine-y);
+    display: flex; flex-direction: column; align-items: center;
+    cursor: pointer; z-index: 12;
+    transform: translateY(-50%);
+    transition: opacity 0.5s ease;
+  }
+  .stage.above { flex-direction: column-reverse; }
+
+  .node {
+    --ring: var(--teal);
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, #16233b, #0b1322);
+    border: 2px solid rgba(255,255,255,0.10);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .node::after {
+    content: ''; position: absolute; inset: -7px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
+  }
+  .node-img { width: 50px; height: 50px; display: block; pointer-events: none; opacity: 0.92; }
+  .stage:hover .node {
+    border-color: var(--ring);
+    transform: scale(1.1);
+    box-shadow: 0 0 22px -2px var(--ring);
+  }
+  .stage.active .node {
+    border-color: var(--ring);
+    transform: scale(1.5);
+    box-shadow: 0 0 30px -2px var(--ring), 0 0 64px -8px var(--ring);
+  }
+  .stage.active .node::after { inset: -10px; border-color: rgba(255,255,255,0.10); }
+  .stage.active { z-index: 30; }
+  .stage.dim { opacity: 0.32; }
+
+  .connector {
+    width: 2px;
+    background: linear-gradient(var(--ring), rgba(45,212,191,0.1));
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  .stage.active .connector, .stage:hover .connector { opacity: 1; }
+
+  .stage-label { display: flex; flex-direction: column; align-items: center; gap: 4px; max-width: 150px; text-align: center; padding: 10px 0; }
+  .stage-num {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+    color: var(--ring); opacity: 0.85;
+  }
+  .stage-name {
+    font-family: var(--font-display); font-size: 13px; font-weight: 700;
+    color: var(--text-sec); line-height: 1.3;
+    transition: color 0.2s;
+  }
+  .stage:hover .stage-name, .stage.active .stage-name { color: var(--text); }
+
+  /* ─────────────────────────  DETAIL PANEL (right-docked)  ───────────────────────── */
+  .panel {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: min(560px, 47vw);
+    background: linear-gradient(180deg, var(--surface), var(--ink-2));
+    border-left: 1px solid var(--rule);
+    box-shadow: -30px 0 70px rgba(0,0,0,0.5);
+    z-index: 200;
+    transform: translateX(100%);
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column;
+  }
+  .panel.show { transform: translateX(0); }
+
+  .panel-close {
+    position: absolute; top: 18px; right: 18px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--rule);
+    color: var(--text-sec); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5; transition: all 0.2s;
+  }
+  .panel-close:hover { background: var(--teal); color: #04201c; border-color: var(--teal); }
+
+  .panel-scroll { flex: 1; overflow-y: auto; scrollbar-width: thin; }
+  .panel-scroll::-webkit-scrollbar { width: 5px; }
+  .panel-scroll::-webkit-scrollbar-thumb { background: var(--surface-up); border-radius: 3px; }
+
+  /* couplet hook + animated illustration */
+  .panel-hero {
+    position: relative;
+    padding: 30px 36px 26px;
+    border-bottom: 1px solid var(--rule);
+    background: radial-gradient(ellipse 120% 100% at 70% 0%, var(--hero-glow, rgba(45,212,191,0.10)) 0%, transparent 62%);
+  }
+  .panel-flag {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent, var(--teal-light));
+    display: flex; align-items: center; gap: 9px; margin-bottom: 18px;
+  }
+  .panel-flag .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .panel-flag .sep { color: var(--text-muted); }
+  .panel-flag .geo { color: var(--text-sec); }
+
+  .hook {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 6px;
+  }
+  .hook-couplet {
+    font-size: 30px; line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    flex-shrink: 0;
+  }
+  .hook-titles { min-width: 0; }
+  .panel-title {
+    font-family: var(--font-display); font-size: 25px; font-weight: 700;
+    color: var(--text); line-height: 1.15;
+  }
+  .panel-subtitle {
+    font-family: var(--font-body); font-style: italic; font-size: 13.5px;
+    color: var(--text-sec); margin-top: 4px;
+  }
+
+  .illus-stage {
+    margin-top: 22px;
+    background: radial-gradient(ellipse at center, var(--hero-glow, rgba(45,212,191,0.08)) 0%, rgba(4,8,16,0.6) 64%);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 250px;
+  }
+  .illus-stage svg { width: 100%; height: auto; max-height: 330px; display: block; }
+  .illus-stage.enter svg { animation: illusEnter 0.8s cubic-bezier(0.4,0,0.2,1) both; }
+  @keyframes illusEnter { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+
+  /* content */
+  .panel-content { padding: 26px 36px 40px; }
+  .panel-def {
+    font-family: var(--font-body); font-size: 14px; line-height: 1.72;
+    color: var(--text-sec);
+    border-left: 2px solid var(--accent, var(--teal));
+    background: rgba(255,255,255,0.025);
+    padding: 14px 16px; border-radius: 0 8px 8px 0;
+    margin-bottom: 26px;
+  }
+  .sec-title {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 12px;
+  }
+  .item-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 24px; }
+  .item {
+    font-family: var(--font-body); font-size: 13px; line-height: 1.6;
+    color: var(--text-sec);
+    padding: 10px 13px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .item .b { flex-shrink: 0; margin-top: 1px; color: var(--accent, var(--teal)); }
+  .item.ex .b { color: var(--teal-light); }
+
+  /* panel footer nav */
+  .panel-nav {
+    border-top: 1px solid var(--rule);
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(7,11,20,0.6);
+  }
+  .nav-btn {
+    font-family: var(--font-body); font-size: 13px; font-weight: 500;
+    color: var(--text-sec); background: rgba(255,255,255,0.04);
+    border: 1px solid var(--rule); border-radius: 8px;
+    padding: 9px 15px; cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    transition: all 0.2s ease; max-width: 44%;
+  }
+  .nav-btn:hover:not(:disabled) { color: var(--teal-light); border-color: var(--teal); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .nav-btn .nb-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-btn.finale-cta {
+    background: linear-gradient(180deg, var(--teal-light), var(--teal));
+    border-color: var(--teal); color: #04201c; font-weight: 600;
+  }
+  .nav-btn.finale-cta:hover { color: #04201c; }
+  .nav-counter { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); }
+
+  /* ─────────────────────────  FOOTER PROGRESS  ───────────────────────── */
+  .footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: 40px; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 30px;
+    background: linear-gradient(to top, rgba(7,11,20,0.95), transparent);
+    pointer-events: none;
+    opacity: 0; transition: opacity 0.6s ease 0.3s;
+  }
+  .footer.show { opacity: 1; }
+  .footer-act {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-sec);
+    display: flex; align-items: center; gap: 9px;
+  }
+  .footer-act .chip { width: 8px; height: 8px; border-radius: 50%; }
+  .footer-pips { display: flex; gap: 5px; pointer-events: all; }
+  .pip { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.14); transition: all 0.3s ease; cursor: pointer; }
+  .pip.visited { background: var(--teal-dark); }
+  .pip.active { background: var(--teal-light); transform: scale(1.5); box-shadow: 0 0 8px var(--teal); }
+  .footer-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted); }
+
+  /* drag hint */
+  .drag-hint {
+    position: fixed; bottom: 54px; left: 50%; transform: translateX(-50%);
+    z-index: 90;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted);
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0; transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .drag-hint.show { opacity: 0.7; }
+  .drag-hint .arr { animation: dragArr 1.8s ease-in-out infinite; }
+  @keyframes dragArr { 0%,100%{transform:translateX(0);opacity:0.4;} 50%{transform:translateX(5px);opacity:1;} }
+
+  /* layer legend */
+  .legend {
+    position: fixed; bottom: 52px; left: 30px; z-index: 100;
+    display: flex; flex-direction: column; gap: 7px;
+    padding: 12px 14px;
+    background: rgba(7,11,20,0.62);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    opacity: 0; transition: opacity 0.6s ease 0.3s;
+    pointer-events: none;
+  }
+  .legend.show { opacity: 1; }
+  .legend-title {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--font-body); font-size: 11px; color: var(--text-sec);
+    opacity: 0.48; transition: opacity 0.3s ease, color 0.3s ease;
+  }
+  .legend-item.active { opacity: 1; color: var(--text); font-weight: 600; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px currentColor; }
+
+  /* ─────────────────────────  FINALE  ───────────────────────── */
+  .finale {
+    position: fixed; inset: 0;
+    z-index: 500;
+    background:
+      radial-gradient(1200px 800px at 50% 38%, #13243f 0%, var(--ink-2) 54%, var(--ink) 84%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.8s ease;
+    overflow-y: auto;
+  }
+  .finale.show { opacity: 1; pointer-events: auto; }
+  .finale-inner {
+    max-width: 760px; width: 100%;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .finale-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 20px;
+  }
+  .finale-h2 {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(28px, 4.4vw, 46px); line-height: 1.12;
+    letter-spacing: -0.015em; color: var(--text);
+    max-width: 18ch; margin-bottom: 44px;
+  }
+  .finale-flow {
+    width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 22px;
+    margin-bottom: 40px;
+  }
+  .finale-bubble {
+    font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+    max-width: 460px; padding: 14px 20px; border-radius: 14px;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .finale-bubble.in { opacity: 1; transform: none; }
+  .finale-bubble.prompt {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--rule);
+    color: var(--text); font-style: italic;
+    border-bottom-left-radius: 4px;
+  }
+  .finale-bubble.response {
+    align-self: flex-end;
+    background: linear-gradient(180deg, rgba(45,212,191,0.16), rgba(45,212,191,0.06));
+    border: 1px solid rgba(45,212,191,0.3);
+    color: var(--text); border-bottom-right-radius: 4px;
+  }
+  .finale-spine { width: 100%; padding: 6px 0; position: relative; }
+  .finale-track {
+    position: relative; height: 2px; width: 100%;
+    background: rgba(45,212,191,0.14); border-radius: 2px;
+  }
+  .finale-fill {
+    position: absolute; left: 0; top: 0; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--teal) 60%, var(--teal-light));
+    box-shadow: 0 0 10px var(--teal); border-radius: 2px;
+  }
+  .finale-nodes {
+    position: absolute; top: 50%; left: 2px; right: 2px;
+    transform: translateY(-50%);
+    display: flex; justify-content: space-between;
+    pointer-events: none;
+  }
+  .finale-node {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .finale-node.lit { background: var(--teal-light); transform: scale(1.6); box-shadow: 0 0 7px var(--teal); }
+  .finale-node.charging { background: currentColor; animation: finaleCharge 0.5s ease-in-out infinite; }
+  @keyframes finaleCharge {
+    0%,100% { box-shadow: 0 0 5px 1px currentColor; transform: scale(1.5); }
+    50%     { box-shadow: 0 0 18px 6px currentColor; transform: scale(2.3); }
+  }
+  .finale-ends {
+    display: flex; justify-content: space-between; margin-top: 18px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .finale-recap {
+    font-family: var(--font-body); font-size: 14px; line-height: 1.6;
+    color: var(--text-sec); max-width: 520px; margin-bottom: 40px;
+    text-wrap: pretty;
+  }
+  .finale-coda {
+    width: 100%; max-width: 520px; margin: 0 auto 40px;
+    padding-top: 26px; border-top: 1px solid var(--rule);
+  }
+  .finale-coda-label {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px;
+  }
+  .finale-coda-card {
+    display: flex; align-items: flex-start; gap: 15px; text-align: left;
+    background: rgba(232,71,26,0.06);
+    border: 1px solid rgba(232,71,26,0.22);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .finale-coda-couplet { font-size: 26px; line-height: 1; flex-shrink: 0; }
+  .finale-coda-title {
+    font-family: var(--font-display); font-size: 17px; font-weight: 700;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .finale-coda-text {
+    font-family: var(--font-body); font-size: 13px; line-height: 1.6;
+    color: var(--text-sec); text-wrap: pretty;
+  }
+  .finale-mark { width: 56px; height: 56px; opacity: 0.95; margin-bottom: 14px; }
+  .finale-sign {
+    font-family: var(--font-display); font-size: 17px; font-weight: 700;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .finale-url {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--teal-light);
+    text-decoration: none; margin-bottom: 36px;
+    border-bottom: 1px solid transparent; transition: border-color 0.2s ease;
+  }
+  .finale-url:hover { border-color: var(--teal-light); }
+  .finale-actions { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; justify-content: center; }
+
+  @media (max-width: 820px) {
+    :root { --stage-w: 230px; --pad: 90px; }
+    .panel { width: 100vw; }
+    .header-brand { display: none; }
+    .now-callout { max-width: 64vw; }
+    .legend { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1ms !important; }
+    .title-line::after { display: none; }
+  }
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQFB42D4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="stage-bg"></div>
+<div class="ambient" id="ambient"></div>
+
+<!-- ───── TITLE SCREEN ───── -->
+<div class="title-screen" id="titleScreen">
+  <img class="title-logo" src="assets/rb-logo-white.png" alt="Ryan Bishop Consulting">
+  <div class="title-line"></div>
+  <div class="title-eyebrow">Ryan Bishop Consulting · A learning journey</div>
+  <h1 class="title-h1">From <em>silicon</em> to <em>inference</em>.</h1>
+  <p class="title-lead">Every answer from a language model begins as refined sand — and crosses half the world before it reaches you. Follow the twenty-six steps from raw silicon to a finished thought.</p>
+  <div class="title-actions">
+    <button class="btn-begin" id="btnBegin">Begin the journey</button>
+    <button class="btn-text" id="btnExplore">or explore freely</button>
+  </div>
+  <div class="title-meta">26 stages · ~10 minutes · sound optional</div>
+</div>
+
+<!-- ───── HEADER ───── -->
+<header class="header" id="header">
+  <span class="header-brand"><a href="/index.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);text-decoration:none;letter-spacing:0.04em;margin-right:16px;white-space:nowrap;" aria-label="Return to ryanbishop.co.uk">← ryanbishop.co.uk</a><span class="brand-lockup" id="homeBtn" role="button" tabindex="0" title="Return to the start"><img class="brand-mark" src="assets/rb-logo-white.png" alt="">Ryan Bishop Consulting <b>Ltd</b></span></span>
+  <div class="header-title">From <em>Silicon</em> to <em>Inference</em></div>
+  <div class="header-right">
+    <button class="audio-toggle" id="audioToggle"><span class="audio-dot"></span><span id="audioLabel">Sound off</span></button>
+  </div>
+</header>
+
+<!-- ───── NOW-ENTERING CALLOUT ───── -->
+<div class="now-callout" id="nowCallout">
+  <div class="now-label"><span class="stripe"></span><span id="nowKicker">Now entering</span></div>
+  <div class="now-place" id="nowPlace"></div>
+  <div class="now-stat" id="nowStat"></div>
+</div>
+
+<!-- ───── TIMELINE ───── -->
+<div class="scroll-wrap" id="scrollWrap">
+  <div class="timeline" id="timeline">
+    <div class="spine"><div class="spine-progress" id="spineProgress"></div></div>
+    <div class="signal" id="signal"></div>
+    <div class="geo-bar" id="geoBar"></div>
+    <!-- act bands + stages injected -->
+  </div>
+</div>
+
+<!-- ───── DETAIL PANEL ───── -->
+<div class="panel" id="panel">
+  <button class="panel-close" id="panelClose">×</button>
+  <div class="panel-scroll">
+    <div class="panel-hero">
+      <div class="panel-flag" id="panelFlag"></div>
+      <div class="hook">
+        <div class="hook-couplet" id="hookCouplet"></div>
+        <div class="hook-titles">
+          <div class="panel-title" id="panelTitle"></div>
+          <div class="panel-subtitle" id="panelSubtitle"></div>
+        </div>
+      </div>
+      <div class="illus-stage" id="illusStage"></div>
+    </div>
+    <div class="panel-content">
+      <div class="panel-def" id="panelDef"></div>
+      <div class="sec-title">Key characteristics</div>
+      <div class="item-list" id="panelChars"></div>
+      <div class="sec-title">In practice</div>
+      <div class="item-list" id="panelExamples"></div>
+    </div>
+  </div>
+  <div class="panel-nav">
+    <button class="nav-btn" id="navPrev"><span>←</span><span class="nb-name" id="prevName"></span></button>
+    <span class="nav-counter" id="navCounter"></span>
+    <button class="nav-btn" id="navNext"><span class="nb-name" id="nextName"></span><span>→</span></button>
+  </div>
+</div>
+
+<!-- ───── FOOTER ───── -->
+<div class="footer" id="footer">
+  <div class="footer-act" id="footerAct"><span class="chip"></span><span id="footerActLabel">—</span></div>
+  <div class="footer-pips" id="footerPips"></div>
+  <span class="footer-label" id="footerLabel">Stage 0 / 23</span>
+</div>
+
+<div class="drag-hint" id="dragHint"><span>Drag to explore</span><span class="arr">→</span></div>
+
+<!-- ───── LAYER LEGEND ───── -->
+<div class="legend" id="legend">
+  <div class="legend-title">Journey layer</div>
+  <div class="legend-item" data-act="geo"><span class="legend-dot" style="background:#f59e0b;color:#f59e0b"></span>Geopolitical</div>
+  <div class="legend-item" data-act="hw"><span class="legend-dot" style="background:#60a5fa;color:#60a5fa"></span>Hardware</div>
+  <div class="legend-item" data-act="sw"><span class="legend-dot" style="background:#34d399;color:#34d399"></span>Software</div>
+  <div class="legend-item" data-act="train"><span class="legend-dot" style="background:#a78bfa;color:#a78bfa"></span>Model Creation</div>
+  <div class="legend-item" data-act="tr"><span class="legend-dot" style="background:#e8471a;color:#e8471a"></span>Inference</div>
+</div>
+
+<!-- ───── FINALE ───── -->
+<div class="finale" id="finale">
+  <div class="finale-inner">
+    <div class="finale-eyebrow" id="finaleEyebrow">The journey, end to end</div>
+    <h2 class="finale-h2">That's the journey behind a single answer.</h2>
+
+    <div class="finale-flow" id="finaleFlow">
+      <div class="finale-bubble prompt" id="finalePrompt">"How do language models actually work?"</div>
+      <div class="finale-spine">
+        <div class="finale-track"><div class="finale-fill" id="finaleFill"></div><div class="finale-nodes" id="finaleNodes"></div></div>
+        <div class="finale-ends"><span>Silicon</span><span>Inference</span></div>
+      </div>
+      <div class="finale-bubble response" id="finaleResponse">A finished thought — drawn from refined sand, across three continents and twenty-six steps.</div>
+    </div>
+
+    <p class="finale-recap" id="finaleRecap">Twenty-six stages · three continents · one sentence. Every layer earns its place before a model can answer you.</p>
+
+    <div class="finale-coda">
+      <div class="finale-coda-label">And beyond</div>
+      <div class="finale-coda-card">
+        <span class="finale-coda-couplet">🤖💬</span>
+        <div class="finale-coda-body">
+          <div class="finale-coda-title">Agentic AI</div>
+          <div class="finale-coda-text">Once a model can answer, the next step is letting it act — planning, using tools, and pursuing goals across many such answers. That is where the journey leads next.</div>
+        </div>
+      </div>
+    </div>
+
+    <img class="finale-mark" src="assets/rb-logo-white.png" alt="Ryan Bishop Consulting">
+    <div class="finale-sign">Ryan Bishop Consulting</div>
+    <a class="finale-url" href="https://ryanbishop.co.uk" target="_blank" rel="noopener">ryanbishop.co.uk</a>
+
+    <div class="finale-actions">
+      <button class="btn-begin" id="finaleRestart">Walk it again</button>
+      <button class="btn-text" id="finaleExplore">Back to the timeline</button>
+      <button class="btn-text" id="finaleHome">Return to the start</button>
+      <a href="/reference-guide.html" class="btn-text" style="text-decoration:none;">Explore all 125 cards →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════ DATA ════════════════════════════ */
+const CARDS = {
+  "Pre-training": { icon:"🌌📖", subtitle:"Where the model is born", theme:"Model Creation", definition:"Pre-training is the process of teaching a language model from scratch by having it predict the next token across trillions of words of text. It is the single most expensive step in creating AI — months of continuous compute across tens of thousands of GPUs, at costs exceeding $100 million per frontier run. Everything the model 'knows' is compressed into its weights during this phase.", characteristics:["One deceptively simple objective: predict the next token — repeated trillions of times until knowledge emerges in the weights","Training data measured in trillions of tokens — Llama 3 trained on 15 trillion, roughly 100 million novels' worth of text","Frontier runs use 10,000–25,000+ GPUs running continuously for 3–6 months — a single hardware failure can checkpoint-restart the entire run","Cost scales brutally: GPT-4-class training estimated at $100M+, with compute doubling roughly every 6 months at the frontier","The loss curve is watched like a patient's vitals — sudden spikes can mean corrupted data, hardware faults, or numerical instability"], examples:["GPT-4 reportedly trained on ~25,000 A100 GPUs over several months","Llama 3: 15 trillion tokens, requiring Meta's 24,000-GPU clusters","Chinchilla scaling laws (DeepMind, 2022) — optimal token-to-parameter ratios reshaping how labs train","Data pipelines filtering Common Crawl from petabytes to curated training corpora","Checkpointing every few hours — losing a week of training to a fault costs millions"] },
+  "Fine-tuning": { icon:"🎯🔧", subtitle:"Transfer learning", theme:"Model Creation", definition:"The process of taking a pre-trained model and further training it on a specific task or domain, adapting its learned knowledge to new specialised applications.", characteristics:["Starts with pre-trained model","Requires less data than training from scratch","Task-specific adaptation","Faster than full training"], examples:["Fine-tuning BERT for sentiment analysis","Adapting GPT for customer support","Medical image classifier from ImageNet","Domain-specific chatbots"] },
+  "RLHF": { icon:"👍🎯", subtitle:"Reinforcement learning from human feedback", theme:"Model Creation", definition:"A training technique that uses human preferences to guide AI behaviour by having humans rank or rate model outputs, then training the model to maximise alignment with these preferences. RLHF is crucial for creating helpful, harmless, and honest AI assistants.", characteristics:["Trains reward models from human preference comparisons","Uses reinforcement learning (PPO) to optimise for human preferences","Aligns model behaviour with human values and intentions","Three-stage process: supervised fine-tuning, reward modelling, RL optimisation","Reduces harmful, biased, or unhelpful outputs"], examples:["InstructGPT and ChatGPT training","Claude's Constitutional AI with human feedback","Llama 2 Chat models","Anthropic's HH-RLHF dataset","Preference learning in robotics"] },
+  "Decoding & Sampling": { icon:"🎲📝", subtitle:"How probabilities become words", theme:"Inference", definition:"The decoder does not emit words — it emits a probability for every possible next token. Decoding is the step that chooses one, turning that distribution into the text you actually read. The strategy it uses — taking the likeliest token, or sampling with temperature — decides whether the answer comes out precise or creative.", characteristics:["Greedy decoding always takes the highest-probability token — deterministic, but often repetitive or flat","Temperature reshapes the distribution: below 1 sharpens it toward the safe choice; above 1 flattens it for more variety","Top-k and top-p (nucleus) sampling keep only the most probable tokens, discarding the unlikely long tail","Beam search holds several candidate sequences open at once, favouring the best whole output over the best next word","The chosen tokens are detokenised — stitched from subword pieces back into readable text"], examples:["Temperature 0 for factual work (code, extraction); higher temperature for creative drafting","Top-p 0.9 — a common default balancing coherence against variety","Repetition and frequency penalties discouraging the model from looping","Beam search in machine translation choosing the best overall sentence, not just the next word","Detokenisation reassembling subword pieces (\u201cplay\u201d, \u201c-ing\u201d) into \u201cplaying\u201d"] },
+  "Large Language Model (LLM)": { icon:"🌐✨", subtitle:"The finished thought", theme:"Inference", definition:"Neural networks trained on massive amounts of text data that can understand and generate human-like text, performing many language tasks without task-specific training.", characteristics:["Billions of parameters","Pre-trained on vast text corpora","Few-shot and zero-shot learning","Emergent capabilities at scale"], examples:["GPT-4, Claude, Gemini","Text generation and completion","Question answering","Code generation"] },
+  "Agentic AI": { icon:"🤖💬", subtitle:"The response, returned", theme:"Inference", definition:"AI systems capable of autonomous, goal-directed behaviour — planning, reasoning, tool use, and taking actions in an environment with minimal human intervention.", characteristics:["Plans multi-step solutions to achieve goals","Uses tools and APIs to extend its capabilities","Maintains context and memory across interactions","Reasons about actions and their consequences","Can self-critique and refine its approach"], examples:["Autonomous task completion","Agents orchestrating LLM capabilities","ReAct (reasoning + acting framework)","Function calling in GPT-4 / Claude","Multi-agent task management"] },
+  "AI Hardware Geopolitics": { icon:"🌍⚔️", subtitle:"Chips, power, and national strategy", theme:"Geopolitical", definition:"Access to advanced AI hardware has become a dimension of geopolitical competition. Export controls, supply-chain concentration, and sovereign-compute initiatives reflect a recognition that AI capability is inseparable from the physical infrastructure that produces and runs it.", characteristics:["United States export controls restricting H100 / A100 sales to China","TSMC concentration in Taiwan creates a single point of failure for global AI supply","ASML's EUV monopoly means advanced fabrication depends on one Dutch company","Sovereign-compute programmes (UK, EU, UAE) building independent AI infrastructure","CHIPS Acts (US, EU) investing over $100bn to reshore semiconductor fabrication"], examples:["US restricting export of H100 GPUs to China, driving domestic alternatives","Compute clusters acquired abroad raising re-export concerns","UK compute investment under the AI Opportunities Action Plan","TSMC Arizona construction reducing Taiwan fabrication dependency","AI infrastructure treated as a national-security issue"] },
+  "Semiconductor Supply Chain": { icon:"🌍🔗", subtitle:"The foundation of AI hardware", theme:"Geopolitical", definition:"The global network of specialised companies that design, manufacture, and supply the chips that power AI. No single country or company controls the full chain — design, fabrication, and equipment are dominated by different players in different regions, creating significant dependencies.", characteristics:["Chip design (fabless): NVIDIA, AMD, Apple, Google design chips without manufacturing them","Fabrication: TSMC (Taiwan) manufactures roughly 90% of the most advanced chips","Lithography: ASML (Netherlands) is the sole producer of EUV machines","Advanced packaging and testing concentrated in Taiwan, South Korea, and Japan","US export controls restricting advanced-chip supply to China since 2022"], examples:["TSMC manufacturing NVIDIA H100 GPUs at a 4nm process node","ASML EUV machines costing $150m+ each — no alternative supplier exists","The US–China chip dispute restricting export of advanced GPUs","Intel attempting to reshore fabrication via US CHIPS Act funding","National dependence on non-domestic fabrication for sovereign AI compute"] },
+  "EUV Lithography": { icon:"🔬💡", subtitle:"Writing with light at the edge of physics", theme:"Geopolitical", definition:"Extreme Ultraviolet Lithography uses 13.5nm light — shorter than any natural light source on Earth — to etch circuit patterns onto silicon with features a few nanometres wide. A single ASML EUV machine weighs 180 tonnes, contains over 100,000 components from some 5,000 suppliers worldwide, and costs more than $150m. There is no alternative manufacturer.", characteristics:["EUV light is generated by firing 50,000 laser pulses per second at tin droplets, creating plasma at around 500,000°C","The 13.5nm wavelength is absorbed by almost everything, including air — the optical path is held in a near-perfect vacuum","The guiding mirrors are among the smoothest surfaces ever made — flat to within a fraction of a nanometre","A single exposure etches features roughly ten silicon atoms wide onto a 300mm wafer in milliseconds","Each machine ships disassembled across 40 freight containers; reassembly and calibration take months"], examples:["ASML's production EUV machines exposing ~160 wafers per hour","TSMC using EUV to manufacture NVIDIA H100 GPUs at 4nm — impossible without it","US export controls blocking EUV shipments to China since 2023","Carl Zeiss (Germany) supplying optics polished to atomic-scale precision","A supply chain spanning three continents converging inside a single tool"] },
+  "Semiconductor Fabrication": { icon:"🏭⚙️", subtitle:"Manufacturing at the scale of atoms", theme:"Geopolitical", definition:"Fabrication turns a blank 300mm silicon wafer into a chip containing billions of transistors through hundreds of sequential steps, inside one of the most controlled environments ever built. A leading-edge fab costs around $20bn and maintains Class 1 cleanliness — fewer than one dust particle per cubic foot of air, far cleaner than an operating theatre.", characteristics:["Core steps — deposition, lithography, etching, doping, planarisation — repeated over a thousand times per wafer","Transistor gate lengths at the 3nm node are roughly fifteen silicon atoms wide","Automated overhead systems move sealed wafer pods between tools with no human contact","Yield is critical: advanced nodes achieve roughly 70–80% usable dies per wafer","A single wafer can take three to four months to pass through 500+ process tools"], examples:["Leading fabs producing 3nm chips at a cost of nearly $20bn","A 300mm wafer yielding 50–70 high-end GPU dies, each worth thousands","Bunny suits filtering particles, since human skin flakes threaten yield","TSMC Arizona producing 4nm chips on US soil from 2024","A 1,000-step process requiring 90+ days of continuous processing"] },
+  "GPU Architecture": { icon:"🖥️⚡", subtitle:"Parallel processing for AI", theme:"Physical Hardware", definition:"A Graphics Processing Unit contains thousands of smaller cores optimised to perform the same operation simultaneously across large datasets. This parallel architecture makes GPUs ideal for the matrix multiplications that underpin neural-network training and inference.", characteristics:["Thousands of cores versus tens on a CPU — built for parallelism, not sequential speed","High memory bandwidth moves large amounts of data to and from VRAM rapidly","VRAM stores model weights and activations during computation","Tensor Cores accelerate mixed-precision matrix operations","Power-hungry: an H100 can draw up to 700W per card"], examples:["NVIDIA H100 — 80GB HBM3, the primary frontier-model training GPU","NVIDIA A100 — previous generation, still widely used in the cloud","AMD MI300X — a competitive alternative with 192GB HBM3","Training large models requiring thousands of GPUs over weeks","Consumer GPUs used for fine-tuning and local inference"] },
+  "TPU & Custom Silicon": { icon:"🔲⚡", subtitle:"Application-specific AI chips", theme:"Physical Hardware", definition:"Tensor Processing Units and other custom chips are designed from the ground up for a specific AI workload, trading general-purpose flexibility for large gains in speed and energy efficiency on their target task.", characteristics:["Application-specific chips outperform GPUs on targeted workloads","Google TPUs are optimised for tensor operations across its products","AWS Trainium and Inferentia reduce cloud AI costs","Apple's Neural Engine enables on-device inference","The trade-off: less flexible than GPUs, but faster and more efficient for defined tasks"], examples:["Google TPU pods used to train large models","AWS Inferentia improving price-performance for inference","Apple Neural Engine running on-device models","Wafer-scale chips for ultra-large models","Specialised inference chips achieving record token speeds"] },
+  "HBM & Memory Bandwidth": { icon:"💧🔋", subtitle:"The hidden AI bottleneck", theme:"Physical Hardware", definition:"High Bandwidth Memory is specialised RAM stacked directly beside the GPU die, enabling extremely fast data transfer between memory and compute cores. Memory bandwidth — not raw compute — is often the true bottleneck in large-model inference.", characteristics:["HBM stacks multiple DRAM dies vertically, connected by through-silicon vias","Bandwidth is measured in TB/s — far beyond standard system memory","Loading model weights from memory dominates inference latency","The 'memory wall': compute has historically outpaced memory bandwidth","Only a few manufacturers make HBM, so supply is constrained"], examples:["NVIDIA H100: 80GB HBM3 at 3.35 TB/s","AMD MI300X: 192GB HBM3 — among the largest on a single GPU","HBM shortages constraining AI-chip production","Algorithms such as FlashAttention reducing bandwidth pressure","Large-model inference bottlenecked by weight loading, not arithmetic"] },
+  "Chip Interconnects & NVLink": { icon:"🔌🕸️", subtitle:"Connecting GPUs at scale", theme:"Physical Hardware", definition:"Training a frontier model requires hundreds or thousands of GPUs working in coordination. Interconnects are the high-speed links that let GPUs share data and synchronise — and the bandwidth between chips often becomes the bottleneck in large training runs.", characteristics:["NVLink: high-bandwidth GPU-to-GPU interconnect","NVSwitch: a fabric enabling all-to-all communication within a server","InfiniBand connects GPU nodes across a data centre at low latency","PCIe is the slower fallback when NVLink is unavailable","Communication overhead is managed by collective operations such as AllReduce"], examples:["A DGX server treating eight GPUs as one logical unit","Research superclusters connecting thousands of GPUs","AllReduce synchronising gradients after each training step","Custom inter-chip links connecting TPU pods","Network bottlenecks causing GPUs to sit idle during training"] },
+  "Training vs Inference Hardware": { icon:"🏋️🚀", subtitle:"Different workloads, different needs", theme:"Physical Hardware", definition:"Training and inference place fundamentally different demands on hardware. Training needs maximum compute and memory to update billions of parameters; inference needs low latency and cost-efficiency to serve predictions at scale.", characteristics:["Training is compute-intensive and needs large VRAM for model, gradients, and optimiser state","Inference is latency-sensitive and needs fast memory to load weights quickly","A 70bn-parameter model needs ~140GB VRAM to train, far less to serve quantised","Inference hardware is optimised for throughput and cost per token","Batching is critical for inference efficiency"], examples:["GPU clusters for frontier-model training","Cost-efficient GPUs optimised for inference serving","Dedicated inference chips deployed at large scale","Quantisation reducing inference memory needs","Edge inference on phone and laptop neural engines"] },
+  "CUDA & the Software Stack": { icon:"💻🔧", subtitle:"NVIDIA's programmable moat", theme:"Software Layer", definition:"CUDA is NVIDIA's parallel-computing platform and programming model, launched in 2006. It lets developers write general-purpose code that runs on GPU cores, and its long head start created an ecosystem so deep that switching costs now exceed hardware considerations.", characteristics:["CUDA extends C/C++ with GPU-specific syntax and memory management","Libraries such as cuDNN provide optimised deep-learning primitives","PyTorch and TensorFlow compile to CUDA operations by default","AMD's ROCm is compatible but lacks CUDA's library depth","CUDA includes profilers, debuggers, and years of optimised libraries"], examples:["Moving computation from CPU to GPU with a single call","Accelerated matrix multiplications underpinning training","FlashAttention kernels cutting attention memory dramatically","Alternative hardware limited by software parity","Researchers using new GPU languages to reduce lock-in"] },
+  "NVIDIA's Moat": { icon:"🏰🔒", subtitle:"Why one company dominates AI hardware", theme:"Software Layer", definition:"NVIDIA's dominance stems not from chip performance alone but from a compounding software and ecosystem advantage built over fifteen years. CUDA lock-in, developer familiarity, optimised libraries, and first-mover timing created switching costs that specifications alone cannot overcome.", characteristics:["A mature ecosystem of libraries, tooling, and developer expertise","Network effects: more users lead to more optimisation, attracting more users","First-mover advantage: deep learning was built on CUDA before alternatives existed","Vertical integration across chips, interconnects, systems, and software","One of the most valuable companies in the world at its peak"], examples:["Frameworks defaulting to NVIDIA hardware","Key optimisation libraries written CUDA-first","Competing chips matching specs but lacking software parity","Cloud providers building custom silicon to reduce dependency","GPU allocation becoming a strategic resource for AI labs"] },
+  "Data Centres & Cloud Compute": { icon:"🏭☁️", subtitle:"AI infrastructure at scale", theme:"Software Layer", definition:"Large-scale AI runs in purpose-built data centres housing thousands of accelerators, with specialised power, cooling, and networking. Cloud providers abstract this complexity into on-demand compute — democratising access while concentrating physical ownership.", characteristics:["A handful of hyperscalers own most global AI compute capacity","A large GPU cluster can draw power comparable to a small town","Liquid cooling is replacing air cooling as thermal density rises","Sovereign-cloud models are emerging as alternatives to hyperscaler dependency","Power Usage Effectiveness measures data-centre energy efficiency"], examples:["Cloud providers supplying dedicated GPU clusters for model training","Research clouds offering free access to accelerators","Government programmes building sovereign AI compute","On-demand multi-GPU instances billed by the hour","Gigawatt-scale data-centre campuses built for AI"] },
+  "Hyperscalers": { icon:"☁️🌐", subtitle:"Where compute is rented by the hour", theme:"Software Layer", definition:"Hyperscalers are the cloud providers operating compute at planetary scale. They own the majority of the world's AI accelerators and rent them out, turning capital-intensive infrastructure into an on-demand utility.", characteristics:["A small number of providers control most rentable AI compute","Capacity is sold on demand, by the hour or by the token","Custom silicon is increasingly built in-house to cut costs","Regions and availability zones distribute capacity globally","Access to capacity has become a competitive advantage for AI labs"], examples:["Dedicated clusters provisioned for frontier-model training","On-demand instances for fine-tuning and inference","Sovereign and regional clouds for data-residency needs","Reserved-capacity deals securing GPU supply","Spot pricing for interruptible workloads"] },
+  "Transformers": { icon:"⚡🎯", subtitle:"Attention-based architecture", theme:"Inference", definition:"A neural-network architecture that relies entirely on self-attention to process sequences in parallel rather than step by step. It uses positional encoding to keep track of order.", characteristics:["Self-attention mechanism","Parallel processing rather than sequential","Positional encodings","The foundation of modern LLMs"], examples:["Generative pre-training (GPT)","Bidirectional encoders (BERT)","Vision Transformers","Translation models"] },
+  "Positional Encoding": { icon:"📍🔢", subtitle:"Giving the model a sense of order", theme:"Inference", definition:"Because transformers process all tokens at once rather than in sequence, they have no inherent sense of word order. Positional encodings inject each token's position into its embedding, so the model can tell apart sequences with the same words in a different order.", characteristics:["Original transformers used fixed sinusoidal encodings","Learned positional embeddings treat position as trainable","Relative encodings capture distance between tokens","Rotary embeddings (RoPE) enable length extrapolation","Context-window length is constrained by the encoding scheme"], examples:["Sinusoidal encoding in the original 2017 paper","Learned embeddings with a fixed maximum length","RoPE enabling very long context windows","Linear-bias methods generalising beyond training length","Without it, 'dog bites man' and 'man bites dog' look identical"] },
+  "Encoder": { icon:"📥🔄", subtitle:"Understanding the input", theme:"Inference", definition:"The encoder reads the input sequence and turns it into a rich contextual representation. Each token becomes a vector that captures its relationship to every other token — passed to a decoder or used directly for tasks like classification.", characteristics:["Processes the whole input simultaneously, not token by token","Each layer refines the representation with attention and feed-forward sublayers","Outputs a contextual embedding for every input token","Stacked layers: a dozen or more in typical models","Used alone for understanding tasks: classification, search, extraction"], examples:["Encoder-only models for search and classification","Optimised variants used widely in production","Sentence embeddings for semantic similarity","Encoder outputs feeding translation models","Clinical models classifying medical records"] },
+  "Multi-Head Attention": { icon:"👁️👁️", subtitle:"Attending to many relationships at once", theme:"Inference", definition:"Multi-head attention runs several attention operations in parallel, each with its own learned weights. Each head can specialise in a different kind of relationship — syntax, reference, proximity — and their outputs are combined into the final representation.", characteristics:["Splits queries, keys, and values into parallel heads","Each head attends to different aspects of the input independently","Head outputs are concatenated and projected back together","Cost scales quadratically with sequence length — the core scaling challenge","Large models use dozens of heads across dozens of layers"], examples:["One head tracking subject–verb agreement, another tracking reference","Vision heads attending to different regions of an image","Thousands of parallel attention operations per forward pass","FlashAttention rewriting attention for memory efficiency","Sparse-attention variants reducing cost for long sequences"] },
+  "Feed-Forward Sublayer": { icon:"⚡🧱", subtitle:"Processing each token independently", theme:"Inference", definition:"After attention has gathered information across the sequence, each layer passes every token through an identical small network. This two-layer block adds non-linearity and is thought to store much of the model's factual knowledge.", characteristics:["Applied identically and independently to each token position","Two linear transformations with a non-linear activation between them","Inner dimension typically several times the model dimension","Accounts for roughly two-thirds of total parameters","Research suggests facts are stored in these weights"], examples:["A large inner dimension per layer in typical models","Studies showing these layers act as key–value memories","GELU activations in most modern transformers","Mixture-of-Experts replacing dense layers with sparse ones","Knowledge-editing research targeting these weights"] },
+  "Layer Normalisation": { icon:"📏⚖️", subtitle:"Stabilising the signal through the stack", theme:"Inference", definition:"Layer normalisation rescales the activations within each layer to a stable range, preventing values from exploding or vanishing as they pass through dozens of stacked layers. Without it, training deep transformers reliably would be near-impossible.", characteristics:["Normalises across the feature dimension, not the batch","Pre-norm placement is now standard for training stability","Post-norm requires careful learning-rate warm-up","Learnable scale and shift let the model undo it if needed","RMSNorm is a simplified, faster variant"], examples:["Pre-norm enabling stable training without warm-up","RMSNorm used in recent open models for efficiency","Gradient explosion without normalisation in deep stacks","Scaled variants for very deep transformers","A tiny fraction of parameters, but critical for stability"] },
+  "Decoder": { icon:"📤✍️", subtitle:"Generating the output", theme:"Inference", definition:"The decoder generates output one token at a time, using both the context it has been given and the tokens it has already produced. Masked self-attention stops it from seeing ahead, so each token is predicted only from what came before.", characteristics:["Autoregressive: generates one token at a time, feeding each back in","Masked self-attention prevents attending to future tokens","Cross-attention connects the decoder to encoder output where present","Decoder-only models share one stack for input and output","Temperature and sampling control output diversity at inference"], examples:["Decoder-only models generating text autoregressively","Encoder–decoder models for translation and summarisation","Decoders generating target language from a representation","Code assistants predicting the next token","Beam search selecting high-probability sequences"] },
+  "KV Cache": { icon:"💾⚡", subtitle:"Avoiding redundant computation", theme:"Inference", definition:"During generation, a decoder must attend to all previous tokens for each new one. The KV cache stores the key and value matrices already computed, so they need not be recomputed each step — turning generation from a quadratic to a linear operation per new token.", characteristics:["Caches key and value projections for previous tokens","Enables efficient generation without reprocessing the full context","Memory grows linearly with sequence length and layer count","Long context windows need significant VRAM for the cache alone","Quantising the cache is a common way to reduce memory pressure"], examples:["Large models needing many gigabytes of cache for long context","Paged-attention managing cache like operating-system memory","Multi-query attention sharing keys and values to shrink the cache","Grouped-query attention balancing efficiency and quality","Prefix caching reused across requests with shared prompts"] }
+};
+
+const STAGES = [
+  { id:1,  label:"Geopolitics",          cardKey:"AI Hardware Geopolitics",       act:"geo", connector:60 },
+  { id:2,  label:"Supply Chain",         cardKey:"Semiconductor Supply Chain",    act:"geo", connector:50 },
+  { id:3,  label:"EUV Lithography",      cardKey:"EUV Lithography",               act:"geo", connector:80 },
+  { id:4,  label:"TSMC Fabrication",     cardKey:"Semiconductor Fabrication",     act:"geo", connector:55 },
+  { id:5,  label:"GPU Architecture",     cardKey:"GPU Architecture",              act:"hw",  connector:82 },
+  { id:6,  label:"Custom Silicon",       cardKey:"TPU & Custom Silicon",          act:"hw",  connector:55 },
+  { id:7,  label:"HBM Memory",           cardKey:"HBM & Memory Bandwidth",        act:"hw",  connector:66 },
+  { id:8,  label:"NVLink",               cardKey:"Chip Interconnects & NVLink",   act:"hw",  connector:50 },
+  { id:9,  label:"Training vs Inference",cardKey:"Training vs Inference Hardware",act:"hw",  connector:72 },
+  { id:10, label:"CUDA Stack",           cardKey:"CUDA & the Software Stack",     act:"sw",  connector:55 },
+  { id:11, label:"NVIDIA's Moat",        cardKey:"NVIDIA's Moat",                 act:"sw",  connector:66 },
+  { id:12, label:"Data Centre",          cardKey:"Data Centres & Cloud Compute",  act:"sw",  connector:50 },
+  { id:13, label:"Hyperscalers",         cardKey:"Hyperscalers",                  act:"sw",  connector:76 },
+  { id:14, label:"Pre-training",         cardKey:"Pre-training",                  act:"train", connector:58 },
+  { id:15, label:"Fine-tuning",          cardKey:"Fine-tuning",                   act:"train", connector:70 },
+  { id:16, label:"RLHF",                 cardKey:"RLHF",                          act:"train", connector:52 },
+  { id:17, label:"Your Prompt",          cardKey:"Large Language Model (LLM)",    act:"tr",  connector:50 },
+  { id:18, label:"Transformer",          cardKey:"Transformers",                  act:"tr",  connector:55 },
+  { id:19, label:"Positional Encoding",  cardKey:"Positional Encoding",           act:"tr",  connector:68 },
+  { id:20, label:"Encoder",              cardKey:"Encoder",                       act:"tr",  connector:50 },
+  { id:21, label:"Multi-Head Attention", cardKey:"Multi-Head Attention",          act:"tr",  connector:80 },
+  { id:22, label:"Feed-Forward",         cardKey:"Feed-Forward Sublayer",         act:"tr",  connector:55 },
+  { id:23, label:"Layer Normalisation",  cardKey:"Layer Normalisation",           act:"tr",  connector:66 },
+  { id:24, label:"Decoder",              cardKey:"Decoder",                       act:"tr",  connector:50 },
+  { id:25, label:"KV Cache",             cardKey:"KV Cache",                      act:"tr",  connector:72 },
+  { id:26, label:"The Response",         cardKey:"Decoding & Sampling",            act:"tr",  connector:60 },
+];
+
+const ILLUS = {};
+["stage_01_geopolitics","stage_02_supply_chain","stage_03_euv","stage_04_fab","stage_05_h100","stage_06_custom_silicon","stage_07_hbm","stage_08_nvlink","stage_09_train_infer","stage_10_cuda","stage_11_moat","stage_12_datacentre","stage_13_hyperscalers","stage_14b_pretraining","stage_15b_finetuning","stage_16b_rlhf","stage_14_prompt","stage_15_transformer","stage_16_positional","stage_17_encoder","stage_18_attention","stage_19_feedforward","stage_20_layernorm","stage_21_decoder","stage_22_kvcache","stage_23_response"]
+.forEach((base,i)=>{ ILLUS[i+1]={ node:`illustrations/${base}_node.svg`, panel:`illustrations/${base}_panel.svg` }; });
+
+/* Act identity — four-layer colour code for stage wayfinding (matches the illustrations) */
+const ACTS = {
+  geo: { color:"#f59e0b", name:"Geopolitical" },
+  hw:  { color:"#60a5fa", name:"Physical Hardware" },
+  sw:  { color:"#34d399", name:"Software Layer" },
+  train: { color:"#a78bfa", name:"Model Creation" },
+  tr:  { color:"#e8471a", name:"Inference" },
+};
+
+/* Border-crossing zones — country, flag stripe, role, hard stat */
+const ZONES = [
+  { from:1,  to:2,  code:"GLOBAL", place:"the global supply chain", role:"Strategy & supply", stat:"No single nation controls the chain", flag:"linear-gradient(90deg,#2dd4bf,#5eead4)", color:"#5eead4", act:"geo" },
+  { from:3,  to:3,  code:"NLD",    place:"the Netherlands",         role:"Lithography",        stat:"Sole source of EUV machines",          flag:"linear-gradient(90deg,#21468B 33%,#fff 33% 66%,#AE1C28 66%)", color:"#f5b942", act:"geo" },
+  { from:4,  to:4,  code:"TWN",    place:"Taiwan",                  role:"Fabrication",        stat:"~90% of advanced chips made here",     flag:"linear-gradient(90deg,#FE0000 40%,#000095 40%)", color:"#f5b942", act:"geo" },
+  { from:5,  to:9,  code:"USA",    place:"the United States",       role:"Chip design",        stat:"GPU & accelerator design",             flag:"linear-gradient(90deg,#B22234 33%,#fff 33% 66%,#3C3B6E 66%)", color:"#2dd4bf", act:"hw" },
+  { from:7,  to:7,  code:"KOR",    place:"South Korea",             role:"Memory · HBM",       stat:"One of three HBM makers worldwide",    flag:"linear-gradient(90deg,#CD2E3A,#fff,#0047A0)", color:"#2dd4bf", act:"hw" },
+  { from:10, to:13, code:"USA",    place:"the United States",       role:"Software & cloud",   stat:"CUDA · hyperscale compute",            flag:"linear-gradient(90deg,#B22234 33%,#fff 33% 66%,#3C3B6E 66%)", color:"#5eead4", act:"sw" },
+  { from:14, to:16, code:"GLOBAL", place:"the training run",        role:"Model Creation",     stat:"Where silicon becomes knowledge",      flag:"linear-gradient(90deg,#a78bfa,#c4b5fd)", color:"#a78bfa", act:"train" },
+  { from:17, to:26, code:"GLOBAL", place:"the model itself",        role:"Inference",          stat:"Silicon becomes a thought",            flag:"linear-gradient(90deg,#fbbf24,#5eead4)", color:"#fbbf24", act:"tr" },
+];
+function zoneFor(id){ return ZONES.find(z=>id>=z.from && id<=z.to) || ZONES[0]; }
+
+const ACT_BANDS = [
+  { act:"geo", label:"Geopolitical", from:1,  to:4 },
+  { act:"hw",  label:"Hardware",     from:5,  to:9 },
+  { act:"sw",  label:"Software",     from:10, to:13 },
+  { act:"train", label:"Model Creation", from:14, to:16 },
+  { act:"tr",  label:"Inference",    from:17, to:26 },
+];
+
+/* ════════════════════════════ LAYOUT ════════════════════════════ */
+const css = getComputedStyle(document.documentElement);
+const STAGE_W = parseInt(css.getPropertyValue('--stage-w')) || 300;
+const PAD = parseInt(css.getPropertyValue('--pad')) || 160;
+const xOf = i => PAD + i * STAGE_W + STAGE_W / 2;
+
+const timeline = document.getElementById('timeline');
+const totalW = PAD * 2 + STAGES.length * STAGE_W;
+timeline.style.width = totalW + 'px';
+
+/* act bands */
+ACT_BANDS.forEach(b => {
+  const left = PAD + (b.from-1)*STAGE_W;
+  const w = (b.to - b.from + 1) * STAGE_W;
+  const band = document.createElement('div');
+  band.className = 'act-band';
+  band.style.left = left + 'px';
+  band.style.width = w + 'px';
+  band.innerHTML = `<div class="act-band-label">${b.label}</div>`;
+  timeline.appendChild(band);
+});
+
+/* border-crossing bar */
+const geoBar = document.getElementById('geoBar');
+geoBar.style.left = (PAD - STAGE_W/2) + 'px';
+const gateEls = {};
+ZONES.forEach((z, zi) => {
+  // gates only render contiguous bar segments by stage span; we lay them in source order
+});
+// Build gates aligned to stage spans (sorted by from, but KOR overlaps USA — render USA then KOR as sub-marker)
+const barZones = ZONES.filter(z => !(z.code==="KOR")); // KOR shown only in narration to avoid overlap
+barZones.forEach(z => {
+  const g = document.createElement('div');
+  g.className = 'geo-gate';
+  g.dataset.from = z.from; g.dataset.to = z.to;
+  g.style.width = (z.to - z.from + 1) * STAGE_W + 'px';
+  g.style.setProperty('--flag', z.flag);
+  g.style.setProperty('--gate-color', z.color);
+  g.innerHTML = `<div class="geo-gate-code">${z.code}</div><div class="geo-gate-role">${z.role}</div><div class="geo-gate-stat">${z.stat}</div>`;
+  geoBar.appendChild(g);
+});
+
+/* stages */
+const stageEls = [];
+STAGES.forEach((s, i) => {
+  const el = document.createElement('div');
+  const above = i % 2 === 0;
+  el.className = 'stage ' + (above ? 'above' : 'below');
+  el.style.left = xOf(i) + 'px';
+  el.dataset.idx = i;
+  el.style.setProperty('--ring', ACTS[s.act].color);
+  el.querySelectorAll && 0;
+  el.innerHTML = `
+    <div class="stage-label">
+      <span class="stage-num" style="color:${ACTS[s.act].color}">${String(s.id).padStart(2,'0')}</span>
+      <span class="stage-name">${s.label}</span>
+    </div>
+    <div class="connector" style="height:${s.connector}px"></div>
+    <div class="node" style="--ring:${ACTS[s.act].color}"><img class="node-img" src="${ILLUS[s.id].node}" alt=""></div>`;
+  el.querySelector('.node').style.borderColor = 'rgba(255,255,255,0.10)';
+  el.addEventListener('click', () => goTo(i, true));
+  timeline.appendChild(el);
+  stageEls.push(el);
+});
+
+/* footer pips */
+const pipsEl = document.getElementById('footerPips');
+STAGES.forEach((s,i)=>{ const p=document.createElement('div'); p.className='pip'; p.addEventListener('click',()=>goTo(i,true)); pipsEl.appendChild(p); });
+
+/* ════════════════════════════ STATE / CAMERA ════════════════════════════ */
+const wrap = document.getElementById('scrollWrap');
+const panel = document.getElementById('panel');
+const signal = document.getElementById('signal');
+let activeIdx = -1, furthest = -1;
+const visited = new Set();
+let panelOpen = false;
+
+function animateScroll(target, dur=750){
+  const start = wrap.scrollLeft, dist = target - start, t0 = performance.now();
+  const max = wrap.scrollWidth - wrap.clientWidth;
+  target = Math.max(0, Math.min(max, target));
+  function step(now){
+    const p = Math.min(1, (now - t0)/dur);
+    const e = p<0.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2; // easeInOutCubic
+    wrap.scrollLeft = start + (Math.max(0,Math.min(max,start+dist)) - start)*e;
+    if (p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function cameraTo(idx){
+  const nodeX = xOf(idx);
+  // when panel open, bias node to left ~32%; else centre
+  const frac = panelOpen ? 0.32 : 0.5;
+  animateScroll(nodeX - wrap.clientWidth * frac);
+}
+
+function fireSignal(fromIdx, toIdx){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const x0 = fromIdx<0 ? PAD*0.4 : xOf(fromIdx);
+  const x1 = xOf(toIdx);
+  signal.style.left = x0 + 'px';
+  signal.animate([
+    { left:x0+'px', opacity:0, offset:0 },
+    { opacity:1, offset:0.12 },
+    { opacity:1, offset:0.85 },
+    { left:x1+'px', opacity:0, offset:1 }
+  ], { duration: 680 + Math.abs(toIdx-fromIdx)*70, easing:'cubic-bezier(0.4,0,0.4,1)' });
+  audioTick();
+}
+
+function setFocus(idx){
+  stageEls.forEach((el,i)=>{
+    el.classList.toggle('active', i===idx);
+    const d = Math.abs(i-idx);
+    el.classList.toggle('dim', panelOpen && d>3);
+  });
+}
+
+function updateProgress(idx){
+  if (idx>furthest) furthest = idx;
+  const pct = ((furthest+1)/STAGES.length)*100;
+  document.getElementById('spineProgress').style.width = pct + '%';
+  document.querySelectorAll('.pip').forEach((p,i)=>{
+    p.classList.toggle('active', i===idx);
+    p.classList.toggle('visited', visited.has(i) && i!==idx);
+  });
+  const s = STAGES[idx];
+  document.getElementById('footerLabel').textContent = `Stage ${s.id} / ${STAGES.length}`;
+  const act = ACTS[s.act];
+  document.getElementById('footerActLabel').textContent = act.name;
+  document.querySelector('#footerAct .chip').style.background = act.color;
+  document.querySelectorAll('.legend-item').forEach(li=>li.classList.toggle('active', li.dataset.act===s.act));
+}
+
+function updateNow(idx){
+  const s = STAGES[idx];
+  const z = zoneFor(s.id);
+  const c = document.getElementById('nowCallout');
+  c.style.setProperty('--flag', z.flag);
+  document.getElementById('nowKicker').textContent = z.code==="GLOBAL" ? "Now in" : "Now entering";
+  document.getElementById('nowPlace').textContent = z.place.charAt(0).toUpperCase()+z.place.slice(1);
+  document.getElementById('nowStat').textContent = z.stat + ".";
+  c.classList.add('show');
+  // highlight active gate
+  document.querySelectorAll('.geo-gate').forEach(g=>{
+    const f=+g.dataset.from, t=+g.dataset.to;
+    g.classList.toggle('active', s.id>=f && s.id<=t);
+  });
+}
+
+/* ════════════════════════════ PANEL ════════════════════════════ */
+const svgCache = {};
+async function loadSVG(url){
+  if (svgCache[url]) return svgCache[url];
+  try { const r = await fetch(url); const t = await r.text(); svgCache[url]=t; return t; }
+  catch(e){ return ''; }
+}
+
+async function fillPanel(idx){
+  const s = STAGES[idx], card = CARDS[s.cardKey], act = ACTS[s.act], z = zoneFor(s.id);
+  panel.style.setProperty('--accent', act.color);
+  panel.style.setProperty('--hero-glow', hexA(act.color, 0.14));
+
+  document.getElementById('panelFlag').innerHTML =
+    `<span class="dot"></span>${act.name}<span class="sep">·</span><span class="geo">${z.code==="GLOBAL"?"Global":z.code}</span>`;
+  document.getElementById('hookCouplet').textContent = card.icon || '';
+  document.getElementById('panelTitle').textContent = s.cardKey;
+  document.getElementById('panelSubtitle').textContent = card.subtitle || '';
+  document.getElementById('panelDef').textContent = card.definition || '';
+  document.getElementById('panelChars').innerHTML = (card.characteristics||[]).map(c=>`<div class="item"><span class="b">▸</span><span>${c}</span></div>`).join('');
+  document.getElementById('panelExamples').innerHTML = (card.examples||[]).map(e=>`<div class="item ex"><span class="b">→</span><span>${e}</span></div>`).join('');
+
+  // nav buttons
+  const prev=document.getElementById('navPrev'), next=document.getElementById('navNext');
+  const last = idx===STAGES.length-1;
+  prev.disabled = idx===0;
+  next.disabled = false;
+  next.classList.toggle('finale-cta', last);
+  document.getElementById('prevName').textContent = idx>0 ? STAGES[idx-1].label : '';
+  document.getElementById('nextName').textContent = last ? 'Complete the journey' : STAGES[idx+1].label;
+  document.getElementById('navCounter').textContent = `${String(s.id).padStart(2,'0')} / ${STAGES.length}`;
+  document.querySelector('.panel-scroll').scrollTop = 0;
+
+  // illustration — inline + animate
+  const stageBox = document.getElementById('illusStage');
+  const svg = await loadSVG(ILLUS[s.id].panel);
+  if (idx!==activeIdx) return; // user moved on while fetching
+  stageBox.innerHTML = svg;
+  stageBox.classList.remove('enter'); void stageBox.offsetWidth; stageBox.classList.add('enter');
+  animateIllustration(stageBox.querySelector('svg'), s);
+}
+
+/* ── illustration animation ── */
+function animateIllustration(svg, s){
+  if (!svg) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // bespoke choreography per stage
+  if (s.id === 3)  { animateEUV(svg); return; }
+  if (s.id === 7)  { animateHBM(svg); return; }
+  if (s.id === 11) { animateMoat(svg); return; }
+  if (s.id === 18) { animateTransformer(svg); return; }
+  if (s.id === 21) { animateAttention(svg); return; }
+  if (s.id === 24) { animateDecoder(svg); return; }
+  if (s.id === 26) { animateResponse(svg); return; }
+
+  animateFlow(svg);
+}
+
+/* ── generic "data flows through the system": a travelling shimmer sweeps the
+   accent blocks in reading order, connectors flow directionally. No bob. ── */
+function animateFlow(svg){
+  const accentRe = /96,\s*165,\s*250|52,\s*211,\s*153|232,\s*71,\s*26|248,\s*113,\s*113|245,\s*158,\s*11|167,\s*139,\s*250|196,\s*181,\s*253|#60a5fa|#34d399|#e8471a|#f87171|#f59e0b|#a78bfa|#c4b5fd/i;
+  const isAccentEl = el => {
+    const f=(el.getAttribute('fill')||'').toLowerCase();
+    const st=(el.getAttribute('stroke')||'').toLowerCase();
+    if (el.getAttribute('filter')==='url(#glow)') return true;
+    if (f && f!=='none' && accentRe.test(f)) return true;
+    if (st && st!=='none' && accentRe.test(st) && !el.hasAttribute('stroke-dasharray')) return true;
+    return false;
+  };
+  const posOf = el => { try { const b=el.getBBox(); return b.x + (b.y*0.3); }
+    catch(e){ return (+el.getAttribute('x')||+el.getAttribute('cx')||0); } };
+
+  let nodes = [...svg.querySelectorAll('rect,circle,ellipse,path,polygon')].filter(isAccentEl);
+  nodes.sort((a,b)=>posOf(a)-posOf(b));
+
+  const N = nodes.length || 1;
+  const sweep = 3600; // ms for one wave to cross the whole diagram
+  nodes.forEach((el,i)=>{
+    const glowy = el.getAttribute('filter')==='url(#glow)';
+    const circle = /circle|ellipse/.test(el.tagName);
+    el.style.transformBox='fill-box'; el.style.transformOrigin='center';
+    const phase = -(i/N)*sweep;               // negative delay → seamless travelling wave
+    const frames = (glowy || circle)
+      ? [{opacity:0.6, transform:'scale(1)'},   {opacity:1, transform:'scale(1.35)'}, {opacity:0.6, transform:'scale(1)'}]
+      : [{opacity:0.72}, {opacity:1}, {opacity:0.72}];
+    el.animate(frames, { duration: sweep, delay: phase, iterations: Infinity, easing: 'ease-in-out' });
+  });
+
+  // directional flow along dashed connectors (data on the wires)
+  [...svg.querySelectorAll('[stroke-dasharray]')].forEach((f,i)=>{
+    f.animate([{ strokeDashoffset: 0 }, { strokeDashoffset: -24 }],
+      { duration: 1100, delay: i*40, iterations: Infinity, easing: 'linear' });
+  });
+}
+
+/* ── Response (finale illustration): tokens generate one after another ── */
+function animateResponse(svg){
+  const accentRe = /232,\s*71,\s*26|248,\s*113,\s*113|245,\s*158,\s*11/i;
+  // token cells light up left→right like autoregressive generation
+  let tokens = [...svg.querySelectorAll('rect')].filter(r=>{
+    const f=(r.getAttribute('fill')||'').toLowerCase();
+    return f!=='none' && accentRe.test(f);
+  });
+  const posOf = el => { try { return el.getBBox().x + el.getBBox().y*0.2; } catch(e){ return +el.getAttribute('x')||0; } };
+  tokens.sort((a,b)=>posOf(a)-posOf(b));
+  const n = tokens.length || 1, step = 380;
+  tokens.forEach((t,i)=>{
+    t.style.transformBox='fill-box'; t.style.transformOrigin='center';
+    t.animate(
+      [{opacity:0.25},{opacity:0.25},{opacity:1},{opacity:0.85}],
+      { duration: n*step, delay: -(n-1-i)*step, iterations: Infinity, easing:'ease-out' }
+    );
+  });
+  // glow nodes (output stream) pulse in the same left→right cadence
+  [...svg.querySelectorAll('[filter="url(#glow)"]')].forEach((g,i)=>{
+    g.style.transformBox='fill-box'; g.style.transformOrigin='center';
+    g.animate([{opacity:0.5,transform:'scale(1)'},{opacity:1,transform:'scale(1.4)'},{opacity:0.5,transform:'scale(1)'}],
+      { duration: n*step, delay:-(n-1-i)*step*0.6, iterations: Infinity, easing:'ease-in-out' });
+  });
+}
+
+/* ── NVIDIA's Moat: the wavy moat lines undulate like water ── */
+function animateMoat(svg){
+  const waves = [...svg.querySelectorAll('path')].filter(p =>
+    p.getAttribute('fill')==='none' && /52,\s*211,\s*153/.test(p.getAttribute('stroke')||'') && /t 80 0/.test(p.getAttribute('d')||''));
+  waves.forEach((w,i)=>{
+    const dir = i % 2 ? 1 : -1;
+    w.style.willChange = 'transform';
+    // gentle horizontal sway + a small vertical swell, phase-staggered → rippling surface
+    w.animate([
+      { transform: 'translate(0px, 0px)' },
+      { transform: `translate(${9*dir}px, -2.5px)` },
+      { transform: 'translate(0px, 0px)' },
+      { transform: `translate(${-9*dir}px, 2.5px)` },
+      { transform: 'translate(0px, 0px)' }
+    ], { duration: 3400 + i*260, delay: -i*520, iterations: Infinity, easing: 'ease-in-out' });
+  });
+}
+
+/* ── Transformer: the signal rises up through the stacked sublayers ── */
+function animateTransformer(svg){
+  // labelled sublayer blocks (accent stroke) — the attention / FFN / norm layers
+  let layers = [...svg.querySelectorAll('rect')].filter(r=>{
+    const w=+r.getAttribute('width')||0, st=(r.getAttribute('stroke')||'').toLowerCase();
+    return w>=90 && w<=160 && /e8471a/.test(st);
+  });
+  // rising: bottom (largest y) first → top
+  layers.sort((a,b)=> (+b.getAttribute('y')) - (+a.getAttribute('y')));
+  const n = layers.length || 1, cycle = n*520 + 900;
+  layers.forEach((r,i)=>{
+    const base = r.getAttribute('fill') || 'rgba(232,71,26,0.07)';
+    r.animate(
+      [ {fill:base, offset:0},
+        {fill:base, offset: i/n*0.8},
+        {fill:'rgba(232,71,26,0.34)', offset: i/n*0.8 + 0.06},
+        {fill:base, offset: Math.min(1, i/n*0.8 + 0.2)},
+        {fill:base, offset:1} ],
+      { duration: cycle, iterations: Infinity, easing: 'ease-in-out' }
+    );
+  });
+  // connectors between sublayers flow upward
+  [...svg.querySelectorAll('[stroke-dasharray]')].forEach((f,i)=>{
+    f.animate([{strokeDashoffset:0},{strokeDashoffset:-24}],
+      { duration: 1200, delay:i*50, iterations: Infinity, easing:'linear' });
+  });
+}
+
+/* ── Decoder: a token circulates the autoregressive feedback loop; output emerges ── */
+function animateDecoder(svg){
+  // the feedback-loop curve already drawn in the illustration
+  const loop = [...svg.querySelectorAll('path')].find(p => (p.getAttribute('d')||'').includes('q 40 0 40 80'));
+  const cycle = 3000;
+  if (loop){
+    let L = 420; try { L = loop.getTotalLength(); } catch(e){}
+    loop.setAttribute('opacity','0.22');                       // dim to a guide-line
+    const seg = 26;
+    const pulse = loop.cloneNode(false);
+    pulse.removeAttribute('opacity');
+    pulse.setAttribute('stroke', '#fca878');                   // warm light-orange
+    pulse.setAttribute('stroke-width', '2.2');
+    pulse.setAttribute('filter', 'url(#glow)');
+    pulse.setAttribute('stroke-dasharray', `${seg} ${L}`);
+    pulse.style.willChange = 'stroke-dashoffset';
+    loop.parentNode.appendChild(pulse);
+    pulse.animate([{ strokeDashoffset: 0 }, { strokeDashoffset: -(L+seg) }],
+      { duration: cycle, iterations: Infinity, easing: 'linear' });   // circulates, contained on the path
+  }
+  // the output token row pulses once per loop (a new token emerges each cycle)
+  const out = [...svg.querySelectorAll('rect')].find(r =>
+    r.getAttribute('x')==='125' && (+r.getAttribute('width'))>=140 && /e8471a/.test((r.getAttribute('stroke')||'').toLowerCase()));
+  if (out){
+    const base = out.getAttribute('fill') || 'rgba(232,71,26,0.1)';
+    out.animate([{fill:base},{fill:base},{fill:'rgba(232,71,26,0.4)'},{fill:base}],
+      { duration: cycle, iterations: Infinity, easing: 'ease-out' });
+  }
+  // masked-attention grid cells shimmer in reading order (kept subtle)
+  const cells = [...svg.querySelectorAll('rect')].filter(r => (+r.getAttribute('width'))===4);
+  cells.sort((a,b)=> (+a.getAttribute('y'))-(+b.getAttribute('y')) || (+a.getAttribute('x'))-(+b.getAttribute('x')));
+  const cn = cells.length || 1;
+  cells.forEach((c,i)=>{
+    c.animate([{opacity:0.5},{opacity:1},{opacity:0.5}],
+      { duration: 2600, delay: -(i/cn)*2600, iterations: Infinity, easing:'ease-in-out' });
+  });
+}
+
+/* ── EUV: droplets + plasma starburst (unchanged) → a light pulse traced along the REAL gold beam line to the wafer ── */
+function animateEUV(svg){
+  const circles = [...svg.querySelectorAll('circle')];
+
+  // falling Sn droplets (unchanged — kept as-is)
+  circles.filter(c => c.getAttribute('cx')==='100' && parseFloat(c.getAttribute('r'))<=1.5)
+    .forEach((d,i)=>{ d.style.transformBox='fill-box'; d.style.transformOrigin='center';
+      d.style.animation = `euvDrop 1.15s ${(i*0.38).toFixed(2)}s ease-in infinite`; });
+
+  // plasma incidence starburst (unchanged — kept as-is)
+  const plasma = circles.find(c => c.getAttribute('cx')==='100' && parseFloat(c.getAttribute('r'))>2);
+  if (plasma){ plasma.style.transformBox='fill-box'; plasma.style.transformOrigin='center';
+    plasma.style.animation = 'euvFlash 4s ease-in-out infinite'; }
+
+  // the real, jagged beam path already drawn in the illustration
+  const beam = [...svg.querySelectorAll('path')].find(p => (p.getAttribute('d')||'').includes('L 64 212'));
+  if (!beam) return;
+
+  let L = 480; try { L = beam.getTotalLength(); } catch(e){}
+  const d = 20;
+
+  // dim the static beam to a faint guide-line
+  beam.setAttribute('opacity', '0.28');
+
+  // a bright pulse of light that travels the exact path and comes to rest on the wafer
+  const pulse = beam.cloneNode(false);
+  pulse.removeAttribute('opacity');
+  pulse.setAttribute('stroke', '#fde68a');
+  pulse.setAttribute('stroke-width', '2.4');
+  pulse.setAttribute('filter', 'url(#glow)');
+  pulse.setAttribute('stroke-dasharray', `${d} ${L}`);
+  pulse.style.willChange = 'stroke-dashoffset, opacity';
+  beam.parentNode.appendChild(pulse);
+  pulse.animate([
+    { strokeDashoffset: d,        opacity: 0,    offset: 0    },
+    { strokeDashoffset: d,        opacity: 0.95, offset: 0.06 },
+    { strokeDashoffset: -(L-d),   opacity: 0.95, offset: 0.52 },  // arrives at the wafer
+    { strokeDashoffset: -(L-d),   opacity: 0.95, offset: 0.70 },  // rests there
+    { strokeDashoffset: -(L-d),   opacity: 0,    offset: 0.86 },  // fades
+    { strokeDashoffset: -(L-d),   opacity: 0,    offset: 1    }
+  ], { duration: 4000, iterations: Infinity, easing: 'cubic-bezier(0.4,0,0.2,1)' });
+
+  // gentle landing glow where the beam meets the wafer (synced to arrival)
+  const NS = 'http://www.w3.org/2000/svg';
+  const land = document.createElementNS(NS,'circle');
+  land.setAttribute('cx','356'); land.setAttribute('cy','318'); land.setAttribute('r','4.5');
+  land.setAttribute('fill','#fde68a'); land.setAttribute('filter','url(#glow)');
+  land.style.transformBox='fill-box'; land.style.transformOrigin='center';
+  beam.parentNode.appendChild(land);
+  land.animate([
+    { opacity:0, transform:'scale(0.4)', offset:0 },
+    { opacity:0, transform:'scale(0.4)', offset:0.5 },
+    { opacity:1, transform:'scale(1.5)', offset:0.56 },
+    { opacity:0.5, transform:'scale(1)', offset:0.72 },
+    { opacity:0, transform:'scale(1)', offset:0.86 },
+    { opacity:0, transform:'scale(1)', offset:1 }
+  ], { duration: 4000, iterations: Infinity, easing: 'ease-out' });
+
+  svg.style.animation = 'illusFloat 8s ease-in-out infinite';
+}
+
+/* ── HBM: data climbs the memory stack; TSV vias flow; logic die feeds it ── */
+function animateHBM(svg){
+  // horizontal DRAM layers (x=105, w=150) light bottom-to-top like a fill
+  const layers = [...svg.querySelectorAll('rect')]
+    .filter(r => r.getAttribute('x')==='105' && +r.getAttribute('width')===150)
+    .sort((a,b)=> +b.getAttribute('y') - +a.getAttribute('y')); // bottom first
+  layers.forEach((r,i)=>{
+    const base = r.getAttribute('fill') || '';
+    r.animate([
+      { fill: base },
+      { fill: 'rgba(96,165,250,0.32)' },
+      { fill: base }
+    ], { duration: 2600, delay: i*180, iterations: Infinity, easing: 'ease-in-out' });
+  });
+  // vertical TSV vias — dashes flow downward (data movement)
+  [...svg.querySelectorAll('[stroke-dasharray]')].forEach((v,i)=>{
+    v.animate([{ strokeDashoffset: 0 }, { strokeDashoffset: -24 }],
+      { duration: 900, delay: i*60, iterations: Infinity, easing: 'linear' });
+  });
+  svg.style.animation = 'illusFloat 8s ease-in-out infinite';
+}
+
+/* ── Attention: query token fans out to keys; links light in sequence ── */
+function animateAttention(svg){
+  // the query→key lines (burnt orange rgba(232,71,26,...)) emanating from x=68
+  const links = [...svg.querySelectorAll('line')]
+    .filter(l => l.getAttribute('x1')==='68' && /232,\s*71,\s*26/.test(l.getAttribute('stroke')||''));
+  links.forEach((l,i)=>{
+    l.setAttribute('stroke-width','1.4');
+    l.animate([
+      { stroke: 'rgba(232,71,26,0.12)' },
+      { stroke: 'rgba(255,120,70,0.95)' },
+      { stroke: 'rgba(232,71,26,0.12)' }
+    ], { duration: 2200, delay: i*260, iterations: Infinity, easing: 'ease-in-out' });
+  });
+  // Q/K/V score blocks pulse
+  [...svg.querySelectorAll('rect')]
+    .filter(r => /232,\s*71,\s*26/.test(r.getAttribute('fill')||''))
+    .forEach((r,i)=>{
+      r.style.transformBox='fill-box'; r.style.transformOrigin='center';
+      r.animate([{ opacity:0.5 },{ opacity:1 },{ opacity:0.5 }],
+        { duration: 1900, delay: i*120, iterations: Infinity, easing: 'ease-in-out' });
+    });
+  svg.style.animation = 'illusFloat 9s ease-in-out infinite';
+}
+
+/* inject animation keyframes once */
+(function(){
+  const st = document.createElement('style');
+  st.textContent = `
+    @keyframes nodeGlow {
+      0%,100% { opacity:0.55; transform:scale(1); }
+      45%     { opacity:1;    transform:scale(1.5); }
+    }
+    @keyframes nodeBreathe {
+      0%,100% { opacity:0.6; }
+      50%     { opacity:1; }
+    }
+    @keyframes flowDash { to { stroke-dashoffset: -48; } }
+    @keyframes euvDrop {
+      0%   { opacity:0; transform:translateY(-16px); }
+      22%  { opacity:1; }
+      78%  { opacity:1; }
+      100% { opacity:0; transform:translateY(40px); }
+    }
+    @keyframes euvFlash {
+      0%,4%  { opacity:0.65; transform:scale(1); }
+      11%    { opacity:1;    transform:scale(1.8); }
+      20%    { opacity:0.85; transform:scale(1.15); }
+      100%   { opacity:0.65; transform:scale(1); }
+    }
+    @keyframes illusFloat { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-5px);} }
+  `;
+  document.head.appendChild(st);
+})();
+
+function hexA(hex, a){
+  const h = hex.replace('#',''); const n = parseInt(h.length===3 ? h.split('').map(x=>x+x).join('') : h, 16);
+  return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+}
+
+/* ════════════════════════════ NAVIGATION ════════════════════════════ */
+function goTo(idx, openPanel){
+  idx = Math.max(0, Math.min(STAGES.length-1, idx));
+  const prev = activeIdx;
+  if (openPanel) panelOpen = true;
+  if (prev !== idx) fireSignal(prev, idx);
+  activeIdx = idx;
+  visited.add(idx);
+  setFocus(idx);
+  updateProgress(idx);
+  updateNow(idx);
+  setAmbientAct(STAGES[idx].act);
+  cameraTo(idx);
+  if (panelOpen){
+    fillPanel(idx);
+    panel.classList.add('show');
+    audioArrive();
+  }
+  dragHint.classList.remove('show');
+}
+
+function closePanel(){
+  panelOpen = false;
+  panel.classList.remove('show');
+  setFocus(activeIdx);
+  cameraTo(activeIdx);
+}
+
+document.getElementById('panelClose').addEventListener('click', closePanel);
+document.getElementById('navPrev').addEventListener('click', ()=>goTo(activeIdx-1, true));
+document.getElementById('navNext').addEventListener('click', ()=>{
+  if (activeIdx===STAGES.length-1) openFinale();
+  else goTo(activeIdx+1, true);
+});
+
+/* ════════════════════════════ FINALE ════════════════════════════ */
+const finale=document.getElementById('finale');
+const finaleNodes=document.getElementById('finaleNodes');
+STAGES.forEach((s,i)=>{ const n=document.createElement('div'); n.className='finale-node'; n.style.color=ACTS[s.act].color; finaleNodes.appendChild(n); });
+let finaleTimers=[];
+function clearFinaleTimers(){ finaleTimers.forEach(t=>clearTimeout(t)); finaleTimers=[]; }
+
+function openFinale(){
+  clearFinaleTimers();
+  document.getElementById('finalePrompt').classList.remove('in');
+  document.getElementById('finaleResponse').classList.remove('in');
+  document.getElementById('finaleFill').style.width='0%';
+  [...finaleNodes.children].forEach(n=>n.classList.remove('lit'));
+  finale.classList.add('show');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduce){
+    document.getElementById('finalePrompt').classList.add('in');
+    document.getElementById('finaleResponse').classList.add('in');
+    document.getElementById('finaleFill').style.width='100%';
+    [...finaleNodes.children].forEach(n=>n.classList.add('lit'));
+    return;
+  }
+  // 1) prompt appears
+  finaleTimers.push(setTimeout(()=>{ document.getElementById('finalePrompt').classList.add('in'); audioArrive(); }, 500));
+  // 2) signal travels the spine — but PAUSES and BUILDS at the three Model Creation
+  //    stages (14–16), a visible charge, then RACES through the inference stages.
+  const n = STAGES.length, startAt = 1300;
+  const fill = document.getElementById('finaleFill');
+  const isTrain = i => STAGES[i].act === 'train';
+  const gapAfter = i => isTrain(i) ? 620 : (STAGES[i].act==='tr' ? 46 : 74); // slow charge, fast inference
+  let t = startAt;
+  STAGES.forEach((s,i)=>{
+    const at = t, dur = gapAfter(i);
+    finaleTimers.push(setTimeout(()=>{
+      const node = finaleNodes.children[i];
+      node.classList.add('lit');
+      fill.style.transition = `width ${dur}ms ${isTrain(i)?'ease-in-out':'linear'}`;
+      fill.style.width = (((i+1)/n)*100).toFixed(2) + '%';
+      if (isTrain(i)){ node.classList.add('charging'); audioTick(); }
+      else if (i%3===0){ audioTick(); }
+    }, at));
+    if (isTrain(i)) finaleTimers.push(setTimeout(()=>{ finaleNodes.children[i].classList.remove('charging'); }, at + dur - 40));
+    t += dur;
+  });
+  const doneAt = t;
+  // 3) response resolves
+  finaleTimers.push(setTimeout(()=>{ document.getElementById('finaleResponse').classList.add('in'); audioArrive(); }, doneAt + 300));
+}
+function closeFinale(){ clearFinaleTimers(); finale.classList.remove('show'); }
+document.getElementById('finaleExplore').addEventListener('click', ()=>{ closeFinale(); });
+document.getElementById('finaleRestart').addEventListener('click', ()=>{ closeFinale(); goTo(0, true); });
+
+window.addEventListener('keydown', e=>{
+  if (e.key==='Escape'){ if(finale.classList.contains('show')) closeFinale(); else if(panelOpen) closePanel(); }
+  if (e.key==='ArrowRight'){ e.preventDefault(); if(panelOpen && activeIdx===STAGES.length-1){ openFinale(); } else { goTo(activeIdx<0?0:activeIdx+1, panelOpen||activeIdx<0); } }
+  if (e.key==='ArrowLeft'){ e.preventDefault(); if(activeIdx>0) goTo(activeIdx-1, panelOpen); }
+});
+
+/* drag-to-scroll (free explore) */
+let dragging=false, startX=0, scrollStart=0, moved=0;
+wrap.addEventListener('mousedown', e=>{ dragging=true; startX=e.pageX; scrollStart=wrap.scrollLeft; moved=0; wrap.classList.add('grabbing'); });
+window.addEventListener('mousemove', e=>{ if(!dragging) return; const d=e.pageX-startX; moved=Math.max(moved,Math.abs(d)); wrap.scrollLeft=scrollStart-d; });
+window.addEventListener('mouseup', ()=>{ dragging=false; wrap.classList.remove('grabbing'); });
+wrap.addEventListener('wheel', e=>{ if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ wrap.scrollLeft+=e.deltaY; } }, {passive:true});
+
+/* ════════════════════════════ AUDIO (generated, ON by default) ════════════════════════════ */
+/* Browsers block all audio until the first user gesture — so the title is silent
+   until Begin/Explore, at which point the ambient bed swells in. Sound is ON by default. */
+let actx=null, ambGain=null, master=null, ambFilter=null, ambOscs=[], ambEdge=null, ambOctave=null, ambPulseDepth=null, audioOn=true, audioStarted=false, ambAct=null;
+
+/* per-layer ambient character: root pitch, filter openness, industrial "edge", brightness */
+const AMBIENCE = {
+  geo: { root:49.00, cutoff:340,  edge:0.012, octave:0.018 },  // dark, tense — raw materials & politics
+  hw:  { root:55.00, cutoff:520,  edge:0.026, octave:0.026 },  // mechanical, industrial — the machines
+  sw:  { root:58.27, cutoff:680,  edge:0.015, octave:0.030 },  // cleaner, humming — the stack
+  train:{ root:61.74, cutoff:780,  edge:0.018, octave:0.036 },  // rhythmic, pulsing — epochs ticking over
+  tr:  { root:65.41, cutoff:900,  edge:0.008, octave:0.044 },  // bright, harmonic — thought
+};
+
+function initAudio(){
+  if (actx) return;
+  actx = new (window.AudioContext||window.webkitAudioContext)();
+  // safety limiter on the very end — nothing can spike past it
+  const comp = actx.createDynamicsCompressor();
+  comp.threshold.value=-18; comp.knee.value=20; comp.ratio.value=12; comp.attack.value=0.005; comp.release.value=0.25;
+  comp.connect(actx.destination);
+  master = actx.createGain(); master.gain.value = 0.0; master.connect(comp);
+  ambFilter = actx.createBiquadFilter(); ambFilter.type='lowpass'; ambFilter.frequency.value=340; ambFilter.Q.value=0.6;
+  ambFilter.connect(master);
+  ambGain = actx.createGain(); ambGain.gain.value = 0.5; ambGain.connect(ambFilter);   // constant — no swell
+  const A = AMBIENCE.geo;
+  // detuned root pair (body)
+  [[1,'triangle',0.055],[1.008,'triangle',0.055]].forEach(([r,type,v])=>{
+    const o=actx.createOscillator(); o.type=type; o.frequency.value=A.root*r;
+    const g=actx.createGain(); g.gain.value=v; o.connect(g); g.connect(ambGain); o.start();
+    ambOscs.push({o,r});
+  });
+  // octave (brightness) — gain rises gently toward inference
+  ambOctave=actx.createGain(); ambOctave.gain.value=A.octave;
+  { const o=actx.createOscillator(); o.type='sine'; o.frequency.value=A.root*2; o.connect(ambOctave); ambOctave.connect(ambGain); o.start(); ambOscs.push({o,r:2,oct:true}); }
+  // fifth "edge" — sawtooth, subtle industrial texture (kept low so it never bites)
+  ambEdge=actx.createGain(); ambEdge.gain.value=A.edge;
+  { const o=actx.createOscillator(); o.type='sawtooth'; o.frequency.value=A.root*1.5; o.connect(ambEdge); ambEdge.connect(ambGain); o.start(); ambOscs.push({o,r:1.5,edge:true}); }
+  // slow "heartbeat" LFO (~0.5Hz) — modulates the octave gain; audible only during the Model Creation layer (depth set in setAmbientAct)
+  ambPulseDepth=actx.createGain(); ambPulseDepth.gain.value=0;
+  { const lfo=actx.createOscillator(); lfo.type='sine'; lfo.frequency.value=0.5; lfo.connect(ambPulseDepth); ambPulseDepth.connect(ambOctave.gain); lfo.start(); }
+}
+
+/* morph the ambient bed to a layer's character over ~1.6s */
+function setAmbientAct(act){
+  if (!actx || !AMBIENCE[act] || act===ambAct) return;
+  ambAct = act;
+  const A = AMBIENCE[act], t = actx.currentTime, T = 1.6;
+  ambOscs.forEach(({o,r})=> o.frequency.linearRampToValueAtTime(A.root*r, t+T));
+  ambFilter.frequency.linearRampToValueAtTime(A.cutoff, t+T);
+  ambEdge.gain.linearRampToValueAtTime(A.edge, t+T);
+  ambOctave.gain.linearRampToValueAtTime(A.octave, t+T);
+  if (ambPulseDepth) ambPulseDepth.gain.linearRampToValueAtTime(act==='train'?0.022:0, t+T);
+}
+/* call on the first user gesture — starts the ambient bed if sound is on */
+function startAudioIfNeeded(){
+  initAudio();
+  if (actx.state==='suspended') actx.resume();
+  if (!audioStarted){
+    audioStarted = true;
+    master.gain.cancelScheduledValues(actx.currentTime);
+    master.gain.setValueAtTime(0.0001, actx.currentTime);
+    master.gain.linearRampToValueAtTime(audioOn?0.34:0.0, actx.currentTime+1.2);
+  }
+}
+function blip(freq, dur, vol, type='sine'){
+  if(!actx||!audioOn||!master) return;
+  const o=actx.createOscillator(), g=actx.createGain();
+  o.type=type; o.frequency.value=freq;
+  o.connect(g); g.connect(master);
+  const t=actx.currentTime;
+  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.start(t); o.stop(t+dur+0.02);
+}
+function audioTick(){ blip(880,0.09,0.05,'triangle'); }          // border crossing
+function audioArrive(){ blip(523.25,0.5,0.07,'sine'); setTimeout(()=>blip(783.99,0.55,0.05,'sine'),70); } // stage arrival
+function audioHover(){ blip(1320,0.045,0.022,'sine'); }          // barely-there hover tick
+function audioSelect(){ blip(660,0.12,0.05,'triangle'); setTimeout(()=>blip(990,0.14,0.035,'sine'),45); } // soft confirm
+function audioBegin(){                                            // warm two-note threshold, curtain up
+  blip(392,0.6,0.09,'sine');
+  setTimeout(()=>blip(587.33,0.7,0.075,'sine'),140);
+  setTimeout(()=>blip(783.99,0.9,0.05,'sine'),300);
+}
+
+const audioToggle=document.getElementById('audioToggle'), audioLabel=document.getElementById('audioLabel');
+/* reflect the default-on state in the UI immediately */
+audioToggle.classList.add('on');
+audioLabel.textContent = 'Sound on';
+audioToggle.addEventListener('click', ()=>{
+  startAudioIfNeeded();
+  audioOn=!audioOn;
+  audioToggle.classList.toggle('on', audioOn);
+  audioLabel.textContent = audioOn?'Sound on':'Sound off';
+  master.gain.cancelScheduledValues(actx.currentTime);
+  master.gain.linearRampToValueAtTime(audioOn?0.34:0.0, actx.currentTime+0.5);
+  if (audioOn) audioSelect();
+});
+
+/* Browsers block ALL audio (including hover ticks) until a genuine user gesture —
+   a click/tap/keypress. Hover never counts, and neither does page load; this is a
+   platform rule, not something a site can override. To make sound feel "on" as
+   early as possible, the very first click/tap/keydown ANYWHERE on the page arms
+   the audio engine immediately, so hover ticks + ambience work from that point on
+   — not only after pressing Begin/Explore specifically. */
+function armAudioOnFirstGesture(){
+  const arm = () => { startAudioIfNeeded(); };
+  ['pointerdown','keydown'].forEach(evt=>document.addEventListener(evt, arm, { once:true, capture:true }));
+}
+armAudioOnFirstGesture();
+
+/* hover + click cues on interactive controls */
+function wireButtonSounds(){
+  document.querySelectorAll('.btn-begin, .btn-text, .nav-btn, .pip, .audio-toggle, .panel-close, .finale-url')
+    .forEach(el=>{
+      el.addEventListener('mouseenter', ()=>audioHover());
+    });
+}
+wireButtonSounds();
+
+/* ════════════════════════════ TITLE / START ════════════════════════════ */
+const titleScreen=document.getElementById('titleScreen');
+const dragHint=document.getElementById('dragHint');
+function revealStage(){
+  titleScreen.classList.add('hide');
+  const hd=document.getElementById('header'), ft=document.getElementById('footer');
+  hd.classList.add('show'); ft.classList.add('show');
+  hd.style.opacity='1'; ft.style.opacity='1';
+  const lg=document.getElementById('legend'); lg.classList.add('show'); lg.style.opacity='1';
+}
+function showTitle(){
+  if (panelOpen) closePanel();
+  if (finale.classList.contains('show')) closeFinale();
+  titleScreen.classList.remove('hide');
+  const hd=document.getElementById('header'), ft=document.getElementById('footer');
+  hd.classList.remove('show'); ft.classList.remove('show');
+  hd.style.opacity=''; ft.style.opacity='';
+  const lg=document.getElementById('legend'); lg.classList.remove('show'); lg.style.opacity='';
+  dragHint.classList.remove('show');
+  wrap.scrollLeft = 0;
+  audioSelect();
+}
+const homeBtn=document.getElementById('homeBtn');
+homeBtn.addEventListener('click', showTitle);
+homeBtn.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); showTitle(); } });
+document.getElementById('finaleHome').addEventListener('click', showTitle);
+document.getElementById('btnBegin').addEventListener('click', ()=>{
+  startAudioIfNeeded();
+  audioBegin();
+  revealStage();
+  setTimeout(()=>goTo(0, true), 650);
+});
+document.getElementById('btnExplore').addEventListener('click', ()=>{
+  startAudioIfNeeded();
+  audioSelect();
+  revealStage();
+  setTimeout(()=>{ goTo(0, false); dragHint.classList.add('show'); }, 650);
+});
+
+/* deep link */
+const m = location.hash.match(/stage-(\d+)/);
+if (m){ const id=+m[1]; const idx=STAGES.findIndex(s=>s.id===id); if(idx>=0){ revealStage(); setTimeout(()=>goTo(idx,true),650); } }
+</script>
+</body>
+</html>
