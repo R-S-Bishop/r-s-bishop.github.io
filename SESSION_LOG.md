@@ -776,6 +776,28 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 3 Jul 2026 (continued) — Stage 2 refinements
+
+### Completed Tasks
+
+#### 1. Homepage families card — link text & spacing
+- Revised link text from `From Silicon to Inference — An interactive journey →` to `An interactive journey: From Silicon to Inference →` — fits on one line and leads with the format
+- Added `margin-top: 10px` to create clear visual separation from "Explore AI Literacy →" above it
+- **Files changed:** `index.html`
+
+#### 2. "Twelve years" → "Over thirteen years" — sitewide
+- Updated all 15 instances across 10 files (footer brand text on every page, hero, audience card, about page prose and meta description)
+- Issue numbers (e.g. "Issue 12") confirmed unaffected — replacement targeted the word "twelve" only
+- **Files changed:** `index.html`, `about.html`, and all pages with the site footer (`brief.html`, `resources.html`, `ai-literacy.html`, `reference-guide.html`, `insights.html`, `contact.html`, `privacy.html`, `terms.html`)
+
+### Post-Deploy ✅
+- `git push origin main` completed
+- Sitemap resubmitted in Google Search Console
+- Indexing request submitted for `silicon-to-inference.html`
+- LinkedIn post-inspector confirmed og:image (1200×630) renders correctly for sharing
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
