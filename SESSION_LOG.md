@@ -798,6 +798,30 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+---
+
+## Session: 4 Jul 2026 — NOW IN callout fix & resources.html Interactive Guides card
+
+### Completed Tasks
+
+#### 1. NOW IN callout overlap fix — silicon-to-inference.html
+- **Problem:** `.now-callout` used `position: fixed; top: 108px` (previously `78px`) which clashed with `.geo-bar` at `position: absolute; top: 13%` (56px tall) — a percentage vs fixed-pixel mismatch. At shorter viewport heights the callout sat inside the geo bar.
+- **Fix:** Changed to `top: calc(13% + 68px)` — ties the callout to the same viewport-height percentage as the geo bar, ensuring a consistent 12px gap below the bar at any screen size.
+- **Verified:** At 1280×800, 1366×768, 1280×600, and 375×812 (mobile) — computed gap confirmed 12px at every size.
+- **Files changed:** `silicon-to-inference.html`
+
+#### 2. resources.html — Interactive Guides card
+- Restructured the middle stream card from a single `<a>` link (reference guide only) to a `<div class="stream-card stream-card--ink">` with two child CTAs.
+- Card title: "Explore the concepts — interactively." with copy covering both tools.
+- Two links: `AI & ML Reference Guide →` and `From Silicon to Inference →`
+- Hover shadow preserved — `.stream-card:hover` selector is element-agnostic.
+- **Files changed:** `resources.html`
+
+### Post-Deploy Actions Required
+- `git push origin main` from Terminal
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
