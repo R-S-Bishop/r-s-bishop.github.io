@@ -822,6 +822,60 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 8 Jul 2026
+
+### Context
+- Issue 14 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 14 — `brief.html`
+- Updated featured latest issue block: №14, 8 Jul 2026, Rentosertib Phase III standout story, new PDF download link
+- Added №13 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 14 - 08.07.2026.pdf`
+
+#### 2. Issue 14 — `resources.html`
+- Added №14 to top of "Recent issues" panel
+- Dropped №11 (panel shows 3 most recent: №14, №13, №12)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 14 — `index.html`
+- Updated brief preview widget: №14 · 8 Jul, three story bullets supplied by Ryan:
+  - Rentosertib Phase III initiated — first end-to-end AI-discovered drug reaches pivotal trial
+  - EU AI Act full-applicability deadline — 25 days away, August 2 mandatory for most high-risk AI systems
+  - Fable 5 restored after 19-day shutdown — White House establishes 30-day frontier model review process
+- **Files changed:** `index.html`
+
+---
+
+## Session: 16 Jul 2026
+
+### Context
+- Issue 15 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 15 — `brief.html`
+- Updated featured latest issue block: №15, 15 Jul 2026, EU AI Act high-risk classification consultation standout story, new PDF download link
+- Added №14 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 15 - 15.07.2026.pdf`
+
+#### 2. Issue 15 — `resources.html`
+- Added №15 to top of "Recent issues" panel
+- Dropped №12 (panel shows 3 most recent: №15, №14, №13)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 15 — `index.html`
+- Updated brief preview widget: №15 · 15 Jul, three story bullets supplied by Ryan:
+  - EU high-risk AI classification consultation closes 23 July — draft guidelines pull more medical devices and health pricing tools into scope than expected
+  - Takeda commits up to $600M to Insilico Medicine drug discovery deal — Pharma.AI to lead early-stage discovery, one week after rentosertib entered Phase III
+  - FLI Summer 2026 Safety Index — nine frontier AI developers scored on safety governance, none above C+
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
