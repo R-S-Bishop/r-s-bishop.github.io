@@ -876,6 +876,33 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 24 Jul 2026
+
+### Context
+- Issue 16 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 16 — `brief.html`
+- Updated featured latest issue block: №16, 24 Jul 2026, EU HTACG General Principles on AI in JCA dossiers standout story, new PDF download link
+- Added №15 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 16 - 24.07.2026.pdf`
+
+#### 2. Issue 16 — `resources.html`
+- Added №16 to top of "Recent issues" panel
+- Dropped №13 (panel shows 3 most recent: №16, №15, №14)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 16 — `index.html`
+- Updated brief preview widget: №16 · 24 Jul, three story bullets supplied by Ryan:
+  - EU HTACG issues first AI-specific guidance for JCA dossiers — AI-assisted evidence synthesis now requires full documentation and justification
+  - Anthropic launches Claude Science — 60+ scientific databases, internal drug discovery programme, 30,000-seat deployment at Bristol Myers Squibb
+  - FDA clears EchoNext, first multi-condition AI heart disease detector — outperformed cardiologists 77% to 64% in head-to-head testing
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
