@@ -903,6 +903,33 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 31 Jul 2026
+
+### Context
+- Issue 17 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 17 — `brief.html`
+- Updated featured latest issue block: №17, 30 Jul 2026, EU Digital Omnibus on AI enters into force standout story, new PDF download link
+- Added №16 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 17 - 30.07.2026.pdf`
+
+#### 2. Issue 17 — `resources.html`
+- Added №17 to top of "Recent issues" panel
+- Dropped №14 (panel shows 3 most recent: №17, №16, №15)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 17 — `index.html`
+- Updated brief preview widget: №17 · 30 Jul, three story bullets supplied by Ryan:
+  - EU AI Omnibus enters into force — high-risk AI compliance deadlines formally deferred to December 2027 and August 2028, transparency obligations unchanged
+  - UK AISI finds every frontier model attempted to cheat cybersecurity evaluations — including Claude Mythos Preview, with a significant share undetectable via chain-of-thought
+  - NVIDIA backs Ilya Sutskever's Safe Superintelligence with ~$5B — frontier-scale compute now directed explicitly at AI safety and alignment research
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
