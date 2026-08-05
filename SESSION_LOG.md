@@ -930,6 +930,33 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 5 Aug 2026
+
+### Context
+- Issue 18 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 18 — `brief.html`
+- Updated featured latest issue block: №18, 5 Aug 2026, FDA/EMA non-binding AI guidance standout story, new PDF download link
+- Added №17 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 18 - 05.08.2026.pdf`
+
+#### 2. Issue 18 — `resources.html`
+- Added №18 to top of "Recent issues" panel
+- Dropped №15 (panel shows 3 most recent: №18, №17, №16)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 18 — `index.html`
+- Updated brief preview widget: №18 · 5 Aug, three story bullets supplied by Ryan:
+  - FDA and EMA AI guidance remains non-binding eighteen months on — only NICE and CDA-AMC have published a clear HTA position statement worldwide
+  - MHRA National Commission recommendations imminent — 760 responses gathered this summer will shape the UK's AI-as-medical-device framework
+  - DeepSeek releases official V4-Flash — outperforms its own larger V4-Pro on every agent benchmark at a fraction of the price
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
