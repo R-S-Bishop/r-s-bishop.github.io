@@ -957,6 +957,33 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 13 Aug 2026
+
+### Context
+- Issue 19 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 19 — `brief.html`
+- Updated featured latest issue block: №19, 12 Aug 2026, UK PM Burnham/DSIT/AI Minister standout story, new PDF download link
+- Added №18 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 19 - 12.08.2026.pdf`
+
+#### 2. Issue 19 — `resources.html`
+- Added №19 to top of "Recent issues" panel
+- Dropped №16 (panel shows 3 most recent: №19, №18, №17)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 19 — `index.html`
+- Updated brief preview widget: №19 · 12 Aug, three story bullets supplied by Ryan:
+  - UK PM Burnham abolishes DSIT, appoints first Cabinet-level AI Minister — industry warns fragmented delivery machinery risks disrupting policy momentum
+  - MHRA-NICE RWE Scientific Dialogue 2026 application cycle closes 17 August — structured pre-competitive route to both bodies at once
+  - OpenAI pauses Astra over first-ever "Critical" cybersecurity designation — self-assessed under its own Preparedness Framework
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
