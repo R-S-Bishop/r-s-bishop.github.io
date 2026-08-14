@@ -318,6 +318,17 @@ h3 {
   padding: 4px;
 }
 
+/* ------------------------------------------------------------------ Announcement banner */
+.announcement-banner {
+  background: var(--rb-teal-primary);
+  color: var(--rb-paper);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  padding: 9px var(--side-pad);
+}
+
 /* ------------------------------------------------------------------ Page header */
 .page-header {
   padding: 64px var(--side-pad) 44px;
