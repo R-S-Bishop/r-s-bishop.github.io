@@ -984,6 +984,26 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 14 Aug 2026
+
+### Context
+- ISPOR Europe 2026 abstract acceptance — announcement banner added sitewide
+
+### Completed Tasks
+
+#### 1. Announcement banner — all pages
+- Added full-width teal strip flush between nav and page content on all 11 content pages
+- Background: `var(--rb-teal-primary)` (#0D9488) — matches "Get in touch" button exactly
+- Text: `var(--rb-paper)` (#FAFAF7) — warm off-white token from design system
+- Font size: `var(--fs-caption)` (13px); padding: 9px vertical; text centred; wraps on mobile
+- Content: *Our abstract, "Governing What You Cannot Read: A Trilateral AI Literacy Gap Across EU5 HTA Appraisal Processes," has been accepted for poster presentation at ISPOR Europe 2026 in Vienna.*
+- CSS added to `styles.css` (`.announcement-banner` block, before Page header section)
+- HTML inserted after `</header>` on: `index.html`, `about.html`, `brief.html`, `resources.html`, `contact.html`, `ai-literacy.html`, `insights.html`, `reference-guide.html`, `silicon-to-inference.html`, `privacy.html`, `terms.html`
+- `expertise.html` and `portfolio.html` excluded — both are redirect stubs with no nav
+- **Files changed:** `styles.css` + all 11 content pages
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
