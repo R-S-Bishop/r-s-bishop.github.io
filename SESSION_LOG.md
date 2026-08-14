@@ -1004,6 +1004,17 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 14 Aug 2026 (continued)
+
+### Completed Tasks
+
+#### 1. Announcement banner text update — all pages
+- Replaced abstract title in banner across all 11 content pages
+- New text: *Our abstract, "Current GenAI Policy In HTA: The Missing Mandate And Implications For Industry," has been accepted for poster presentation at ISPOR Europe 2026 in Vienna.*
+- **Files changed:** all 11 content pages (same set as previous session)
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
