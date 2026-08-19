@@ -1015,6 +1015,33 @@ Home · About · Resources▾ (AI Brief / AI Literacy / AI & ML Reference / Insi
 
 ---
 
+## Session: 19 Aug 2026
+
+### Context
+- Issue 20 of the RB Weekly AI Brief published today
+
+### Completed Tasks
+
+#### 1. Issue 20 — `brief.html`
+- Updated featured latest issue block: №20, 19 Aug 2026, NICE AI pilots standout story, new PDF download link
+- Added №19 row at top of Earlier Issues archive
+- **Files changed:** `brief.html`
+- **Files added:** `briefs/RB Weekly AI Brief - Issue 20 - 19.08.2026.pdf`
+
+#### 2. Issue 20 — `resources.html`
+- Added №20 to top of "Recent issues" panel
+- Dropped №17 (panel shows 3 most recent: №20, №19, №18)
+- **Files changed:** `resources.html`
+
+#### 3. Issue 20 — `index.html`
+- Updated brief preview widget: №20 · 19 Aug, three story bullets supplied by Ryan:
+  - NICE runs parallel pilots testing AI-assisted evidence submissions and reviews — early signal of the benchmark other HTA bodies will be measured against
+  - MHRA redraws the regulatory perimeter for AI scribes in NHS settings — transcription and drafting tools cleared, diagnostic-support tools remain regulated
+  - Google releases Gemini 3.7 Flash — 65.3% on DeepSWE v1.1, up from 49.0%, at half the launch price of its predecessor
+- **Files changed:** `index.html`
+
+---
+
 ## File Path Reference
 | Asset | Path |
 |---|---|
