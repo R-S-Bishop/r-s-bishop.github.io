@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 26 August 2026
+
+### Completed Tasks
+
+#### 1. Issue 21 — RB Weekly AI Brief (25 Aug 2026)
+- **brief.html:** Featured block updated to №21 / 25 Aug 2026 / Epic UGM standout; PDF download link updated to Issue 21; №20 added as top archive row
+- **resources.html:** Recent issues panel updated to №21, №20, №19
+- **index.html:** Brief preview widget updated to №21 · 25 Aug with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 21 - 25.08.2026.pdf`
+
+---
+
 ## Session: 27 February 2026
 
 ### Context
