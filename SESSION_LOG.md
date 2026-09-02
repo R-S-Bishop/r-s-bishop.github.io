@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 2 September 2026
+
+### Completed Tasks
+
+#### 1. Issue 22 — RB Weekly AI Brief (1 Sep 2026)
+- **brief.html:** Featured block updated to №22 / 1 Sep 2026 / FDA GenAI medical devices standout; PDF download link updated to Issue 22; №21 added as top archive row
+- **resources.html:** Recent issues panel updated to №22, №21, №20
+- **index.html:** Brief preview widget updated to №22 · 1 Sep with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 22 - 01.09.2026.pdf`
+
+---
+
 ## Session: 26 August 2026
 
 ### Completed Tasks
