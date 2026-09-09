@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 9 September 2026
+
+### Completed Tasks
+
+#### 1. Issue 23 — RB Weekly AI Brief (8 Sep 2026)
+- **brief.html:** Featured block updated to №23 / 8 Sep 2026 / NICE AI delivery plan standout; PDF download link updated to Issue 23; №22 added as top archive row
+- **resources.html:** Recent issues panel updated to №23, №22, №21
+- **index.html:** Brief preview widget updated to №23 · 8 Sep with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 23 - 08.09.2026.pdf`
+
+---
+
 ## Session: 2 September 2026
 
 ### Completed Tasks
