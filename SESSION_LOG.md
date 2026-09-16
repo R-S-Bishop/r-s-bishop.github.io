@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 16 September 2026
+
+### Completed Tasks
+
+#### 1. Issue 24 — RB Weekly AI Brief (15 Sep 2026)
+- **brief.html:** Featured block updated to №24 / 15 Sep 2026 / MHRA National Commission standout; PDF download link updated to Issue 24; №23 added as top archive row
+- **resources.html:** Recent issues panel updated to №24, №23, №22
+- **index.html:** Brief preview widget updated to №24 · 15 Sep with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 24 - 15.09.2026.pdf`
+
+---
+
 ## Session: 9 September 2026
 
 ### Completed Tasks
