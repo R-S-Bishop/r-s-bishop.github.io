@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 23 September 2026
+
+### Completed Tasks
+
+#### 1. Issue 25 — RB Weekly AI Brief (23 Sep 2026)
+- **brief.html:** Featured block updated to №25 / 23 Sep 2026 / Google/Gemini testing flaw standout; PDF download link updated to Issue 25; №24 added as top archive row
+- **resources.html:** Recent issues panel updated to №25, №24, №23
+- **index.html:** Brief preview widget updated to №25 · 23 Sep with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 25 - 23.09.2026.pdf`
+
+---
+
 ## Session: 16 September 2026
 
 ### Completed Tasks
