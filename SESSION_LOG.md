@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 30 September 2026
+
+### Completed Tasks
+
+#### 1. Issue 26 — RB Weekly AI Brief (29 Sep 2026)
+- **brief.html:** Featured block updated to №26 / 29 Sep 2026 / Pentagon/Anthropic blacklisting standout; PDF download link updated to Issue 26; №25 added as top archive row
+- **resources.html:** Recent issues panel updated to №26, №25, №24
+- **index.html:** Brief preview widget updated to №26 · 29 Sep with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 26 - 29.09.2026.pdf`
+
+---
+
 ## Session: 23 September 2026
 
 ### Completed Tasks
