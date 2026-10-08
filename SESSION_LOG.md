@@ -2,6 +2,21 @@
 
 ---
 
+## Session: 8 October 2026
+
+### Completed Tasks
+
+#### 1. Issue 27 — RB Weekly AI Brief (7 Oct 2026)
+- **brief.html:** Featured block updated to №27 / 7 Oct 2026 / Trump frontier safety pact standout; PDF download link updated to Issue 27; №26 added as top archive row
+- **resources.html:** Recent issues panel updated to №27, №26, №25
+- **index.html:** Brief preview widget updated to №27 · 7 Oct with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 27 - 07.10.2026.pdf`
+
+#### 2. Homepage credibility strip
+- Updated "12 years" → "13 years" in the proof section
+
+---
+
 ## Session: 30 September 2026
 
 ### Completed Tasks
