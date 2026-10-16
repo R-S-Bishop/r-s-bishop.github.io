@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 16 October 2026
+
+### Completed Tasks
+
+#### 1. Issue 28 — RB Weekly AI Brief (14 Oct 2026)
+- **brief.html:** Featured block updated to №28 / 14 Oct 2026 / EU Scientific Panel standout; PDF download link updated to Issue 28; №27 added as top archive row
+- **resources.html:** Recent issues panel updated to №28, №27, №26 (№25 dropped)
+- **index.html:** Brief preview widget updated to №28 · 14 Oct with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 28 - 14.10.2026.pdf`
+
+---
+
 ## Session: 8 October 2026
 
 ### Completed Tasks
