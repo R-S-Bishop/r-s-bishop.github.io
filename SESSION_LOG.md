@@ -2,6 +2,18 @@
 
 ---
 
+## Session: 23 October 2026
+
+### Completed Tasks
+
+#### 1. Issue 29 — RB Weekly AI Brief (22 Oct 2026)
+- **brief.html:** Featured block updated to №29 / 22 Oct 2026 / AI-found PHP flaws standout; PDF download link updated to Issue 29; №28 added as top archive row
+- **resources.html:** Recent issues panel updated to №29, №28, №27 (№26 dropped)
+- **index.html:** Brief preview widget updated to №29 · 22 Oct with three new bullets
+- **PDF copied:** `briefs/RB Weekly AI Brief - Issue 29 - 22.10.2026.pdf`
+
+---
+
 ## Session: 16 October 2026
 
 ### Completed Tasks
